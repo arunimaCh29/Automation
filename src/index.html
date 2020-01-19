@@ -1,11 +1,143 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bot Tasker</title>
+    <link rel="stylesheet" href="https://github.com/mozilla/nocturnal/blob/master/fonts/MuseoSans_500-webfont.ttf"
+        type="text\css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway" type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
   <meta charset="utf-8">
   <title>ChromeExtension</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <style>
+    @font-face {
+        font-family: MuseoSans_500;
+        src: url(fonts/MuseoSans_500-webfont.ttf);
+    }
+
+    html,
+    body {
+        font-family: 'MuseoSans_500', sans-serif;
+        font-size: 14px;
+
+        padding: 0;
+        width: 300px;
+    }
+
+    h1 {
+        font-family: 'MuseoSans_500';
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0;
+        color: #5d5e5e
+    }
+
+    a:link,
+    a:visited {
+        outline: 0;
+        text-decoration: none;
+    }
+
+    img {
+        width: 30px;
+    }
+
+    .logo-icon {
+        margin-bottom: 0;
+    }
+
+    .title {
+        padding-top: 10px;
+        margin-left: 15px;
+
+    }
+
+    .modal-header {
+        align-items: center;
+        margin-top: -15px;
+    }
+
+    .content {
+        text-align: center;
+        margin-top: -25px;
+
+    }
+
+    .modal-icons {
+        border-top: .5px solid #dadada;
+        height: 50px;
+        width: 100%;
+    }
+
+    .logo {
+        padding: 15px;
+    }
+
+    .logo-align {
+        margin-right: 5px;
+    }
+
+    .version {
+        color: #444;
+        font-size: 18px;
+
+    }
+
+    label {
+        margin-left: 5px;
+        margin-top: 5px;
+        margin-bottom: 0;
+        font-weight: bolder;
+    }
+
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 22px;
+    }
+
+    .flex {
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+
+    }
+
+    .flex:hover {
+        opacity: 0.4;
+    }
+
+    .flex .fa {
+        font-size: 20px;
+        color: #f15a2b
+    }
+
+    .submitButton {
+        text-align: center;
+        margin: 10px;
+    }
+
+    .form-group {
+        margin: 0;
+    }
+
+    #customBotFields {
+        margin-top: 10px;
+    }
+
+    #login-btn {
+        color: white;
+    }
+</style>
 </head>
 <body>
   <app-root></app-root>

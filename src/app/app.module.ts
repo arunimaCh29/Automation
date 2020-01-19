@@ -3,18 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { LoginComponent } from './login/login.component';
+import { BotPopUpComponent } from './bot-pop-up/bot-pop-up.component';
+import { LoadersService } from './services/loaders.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HelloWorldComponent
+    LoginComponent,
+    BotPopUpComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    LoadersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
