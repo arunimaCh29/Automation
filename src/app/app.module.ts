@@ -7,12 +7,16 @@ import { LoginComponent } from './login/login.component';
 import { BotPopUpComponent } from './bot-pop-up/bot-pop-up.component';
 import { LoadersService } from './services/loaders.service';
 import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    BotPopUpComponent
+    BotPopUpComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

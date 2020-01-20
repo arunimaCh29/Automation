@@ -1,14 +1,4 @@
-<div class="modal-header">
-  <h1 class="logo">
-    <img src="images/icon.png" alt="Bot Tasker" class="logo-icon"><span class="title">Bot Tasker</span>
-    <span class="version">(0.0.1)</span>
-  </h1>
-</div>
-<div class="content">
-  <p>Easily send work for your bots</p>
-</div>
-
-<div id="login_section">
+<div *ngIf="!nextPage" id="login_section">
   <div class="form-group">
     <label>Control Room URL</label>
     <input type="text" class="form-control" id="crURL" placeholder="URL">
@@ -22,31 +12,11 @@
     <input type="password" class="form-control" id="crPassword" placeholder="Password">
   </div>
   <div class="submitButton">
-    <a [routerLink]="['/bot-pop-up']" type="Submit" class="btn btn-primary login-btn">Submit</a>
+    <button type="button"  class="btn btn-primary login-btn" (click)="authenticate()">Submit</button>
   </div>
 
 </div>
-<div class="modal-icons">
-  <div class="flex-container">
-    <div class="flex">
-      <a href="https://www.youtube.com/channel/UCZP7bD2cUzaBp_bEgHidoPw" title="Automation Anywhere on YouTube"
-        target="_blank"><i class="fa fa-youtube"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://twitter.com/AutomationAnywh" title="Automation Anywhere on Twitter" target="_blank"><i
-          class="fa fa-twitter"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://www.facebook.com/AutomationAnywhereSoftware/" title="Automation Anywhere on Facebook"
-        target="_blank"><i class="fa fa-facebook"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://www.instagram.com/automation_anywhere" title="Automation Anywhere on Instagram"
-        target="_blank"><i class="fa fa-instagram"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://university.automationanywhere.com/" title="Automation Anywhere University" target="_blank"><i
-          class="fa fa-university"></i></a>
-    </div>
-  </div>
+
+<div *ngIf="nextPage">
+<app-bot-pop-up></app-bot-pop-up>
 </div>

@@ -51,7 +51,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<app-login></app-login>\n<router-outlet></router-outlet>\n";
+    __webpack_exports__["default"] = "<app-header></app-header>\n<app-login></app-login>\n<app-footer></app-footer>\n<router-outlet></router-outlet>\n";
     /***/
   },
 
@@ -71,7 +71,47 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "    <div class=\"modal-header\">\n        <h1 class=\"logo\">\n            <img src=\"images/icon.png\" alt=\"Bot Tasker\" class=\"logo-icon\"><span class=\"title\">Bot Tasker</span>\n            <span class=\"version\">(0.0.1)</span>\n        </h1>\n    </div>\n    <div class=\"content\">\n        <p>Easily send work for your bots</p>\n    </div>\n\n    <div class=\"form-group\">\n        <label for=\"\">Select a Bot to Get Started</label>\n        <!-- <select class=\"form-control\" id=\"botSelector\">\n            <option>Select a Bot</option>\n            <option value=\"eBay Auction Sniper Bot\">eBay Auction Sniper Bot</option>\n            <option value=\"Price Check Bot\">Price Check Bot</option>\n            <option value=\"Car Buyer Bot\">Car Buyer Bot</option>\n        </select> -->\n        <select class=\"form-control\" id=\"botSelector\">\n          <option *ngFor=\"let item of file['bot-names']\"> {{item}}</option>\n\n        </select>\n    </div>\n    <div id=\"customBotFields\">\n        <!-- Javascript customizes this part -->\n\n    </div>\n    <div class=\"modal-icons\">\n        <div class=\"flex-container\">\n            <div class=\"flex\">\n                <a href=\"https://www.youtube.com/channel/UCZP7bD2cUzaBp_bEgHidoPw\"\n                    title=\"Automation Anywhere on YouTube\" target=\"_blank\"><i class=\"fa fa-youtube\"></i></a>\n            </div>\n            <div class=\"flex\">\n                <a href=\"https://twitter.com/AutomationAnywh\" title=\"Automation Anywhere on Twitter\" target=\"_blank\"><i\n                        class=\"fa fa-twitter\"></i></a>\n            </div>\n            <div class=\"flex\">\n                <a href=\"https://www.facebook.com/AutomationAnywhereSoftware/\" title=\"Automation Anywhere on Facebook\"\n                    target=\"_blank\"><i class=\"fa fa-facebook\"></i></a>\n            </div>\n            <div class=\"flex\">\n                <a href=\"https://www.instagram.com/automation_anywhere\" title=\"Automation Anywhere on Instagram\"\n                    target=\"_blank\"><i class=\"fa fa-instagram\"></i></a>\n            </div>\n            <div class=\"flex\">\n                <a href=\"https://university.automationanywhere.com/\" title=\"Automation Anywhere University\"\n                    target=\"_blank\"><i class=\"fa fa-university\"></i></a>\n            </div>\n        </div>\n    </div>\n";
+    __webpack_exports__["default"] = "<div class=\"form-group\">\n  <label for=\"\">Select a Bot to Get Started</label>\n  <!-- <select class=\"form-control\" id=\"botSelector\">\n            <option>Select a Bot</option>\n            <option value=\"eBay Auction Sniper Bot\">eBay Auction Sniper Bot</option>\n            <option value=\"Price Check Bot\">Price Check Bot</option>\n            <option value=\"Car Buyer Bot\">Car Buyer Bot</option>\n        </select> -->\n  <select class=\"form-control\" id=\"botSelector\">\n    <option *ngFor=\"let item of file['bot-names']\"> {{item}}</option>\n\n  </select>\n</div>\n<div id=\"customBotFields\">\n  <!-- Javascript customizes this part -->\n\n</div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/footer/footer.component.html":
+  /*!************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/footer/footer.component.html ***!
+    \************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppFooterFooterComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"modal-icons\">\n  <div class=\"flex-container\">\n    <div class=\"flex\">\n      <a href=\"https://www.youtube.com/channel/UCZP7bD2cUzaBp_bEgHidoPw\" title=\"Automation Anywhere on YouTube\"\n        target=\"_blank\"><i class=\"fa fa-youtube\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://twitter.com/AutomationAnywh\" title=\"Automation Anywhere on Twitter\" target=\"_blank\"><i\n          class=\"fa fa-twitter\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://www.facebook.com/AutomationAnywhereSoftware/\" title=\"Automation Anywhere on Facebook\"\n        target=\"_blank\"><i class=\"fa fa-facebook\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://www.instagram.com/automation_anywhere\" title=\"Automation Anywhere on Instagram\"\n        target=\"_blank\"><i class=\"fa fa-instagram\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://university.automationanywhere.com/\" title=\"Automation Anywhere University\" target=\"_blank\"><i\n          class=\"fa fa-university\"></i></a>\n    </div>\n  </div>\n</div>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/header/header.component.html":
+  /*!************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/header/header.component.html ***!
+    \************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppHeaderHeaderComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"modal-header\">\n  <h1 class=\"logo\">\n    <img src=\"images/icon.png\" alt=\"Bot Tasker\" class=\"logo-icon\"><span class=\"title\">Bot Tasker</span>\n    <span class=\"version\">(0.0.1)</span>\n  </h1>\n</div>\n<div class=\"content\">\n  <p>Easily send work for your bots</p>\n</div>\n";
     /***/
   },
 
@@ -91,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"modal-header\">\n  <h1 class=\"logo\">\n    <img src=\"images/icon.png\" alt=\"Bot Tasker\" class=\"logo-icon\"><span class=\"title\">Bot Tasker</span>\n    <span class=\"version\">(0.0.1)</span>\n  </h1>\n</div>\n<div class=\"content\">\n  <p>Easily send work for your bots</p>\n</div>\n\n<div id=\"login_section\">\n  <div class=\"form-group\">\n    <label>Control Room URL</label>\n    <input type=\"text\" class=\"form-control\" id=\"crURL\" placeholder=\"URL\">\n  </div>\n  <div class=\"form-group\">\n    <label>Control Room Username</label>\n    <input type=\"text\" class=\"form-control\" id=\"crUsername\" placeholder=\"Username\">\n  </div>\n  <div class=\"form-group\">\n    <label>Control Room Password</label>\n    <input type=\"password\" class=\"form-control\" id=\"crPassword\" placeholder=\"Password\">\n  </div>\n  <div class=\"submitButton\">\n    <a [routerLink]=\"['/bot-pop-up']\" type=\"Submit\" class=\"btn btn-primary login-btn\">Submit</a>\n  </div>\n\n</div>\n<div class=\"modal-icons\">\n  <div class=\"flex-container\">\n    <div class=\"flex\">\n      <a href=\"https://www.youtube.com/channel/UCZP7bD2cUzaBp_bEgHidoPw\" title=\"Automation Anywhere on YouTube\"\n        target=\"_blank\"><i class=\"fa fa-youtube\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://twitter.com/AutomationAnywh\" title=\"Automation Anywhere on Twitter\" target=\"_blank\"><i\n          class=\"fa fa-twitter\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://www.facebook.com/AutomationAnywhereSoftware/\" title=\"Automation Anywhere on Facebook\"\n        target=\"_blank\"><i class=\"fa fa-facebook\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://www.instagram.com/automation_anywhere\" title=\"Automation Anywhere on Instagram\"\n        target=\"_blank\"><i class=\"fa fa-instagram\"></i></a>\n    </div>\n    <div class=\"flex\">\n      <a href=\"https://university.automationanywhere.com/\" title=\"Automation Anywhere University\" target=\"_blank\"><i\n          class=\"fa fa-university\"></i></a>\n    </div>\n  </div>\n</div>\n";
+    __webpack_exports__["default"] = "<div *ngIf=\"!nextPage\" id=\"login_section\">\n  <div class=\"form-group\">\n    <label>Control Room URL</label>\n    <input type=\"text\" class=\"form-control\" id=\"crURL\" placeholder=\"URL\">\n  </div>\n  <div class=\"form-group\">\n    <label>Control Room Username</label>\n    <input type=\"text\" class=\"form-control\" id=\"crUsername\" placeholder=\"Username\">\n  </div>\n  <div class=\"form-group\">\n    <label>Control Room Password</label>\n    <input type=\"password\" class=\"form-control\" id=\"crPassword\" placeholder=\"Password\">\n  </div>\n  <div class=\"submitButton\">\n    <button type=\"button\"  class=\"btn btn-primary login-btn\" (click)=\"authenticate()\">Submit</button>\n  </div>\n\n</div>\n\n<div *ngIf=\"nextPage\">\n<app-bot-pop-up></app-bot-pop-up>\n</div>\n";
     /***/
   },
 
@@ -856,13 +896,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
+    /* harmony import */
+
+
+    var _header_header_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ./header/header.component */
+    "./src/app/header/header.component.ts");
+    /* harmony import */
+
+
+    var _footer_footer_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./footer/footer.component */
+    "./src/app/footer/footer.component.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"], _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_6__["BotPopUpComponent"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"], _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_6__["BotPopUpComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_9__["HeaderComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]],
       imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]],
       providers: [_services_loaders_service__WEBPACK_IMPORTED_MODULE_7__["LoadersService"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -995,6 +1047,164 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./src/app/footer/footer.component.css":
+  /*!*********************************************!*\
+    !*** ./src/app/footer/footer.component.css ***!
+    \*********************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppFooterFooterComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2Zvb3Rlci9mb290ZXIuY29tcG9uZW50LmNzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/footer/footer.component.ts":
+  /*!********************************************!*\
+    !*** ./src/app/footer/footer.component.ts ***!
+    \********************************************/
+
+  /*! exports provided: FooterComponent */
+
+  /***/
+  function srcAppFooterFooterComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FooterComponent", function () {
+      return FooterComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var FooterComponent =
+    /*#__PURE__*/
+    function () {
+      function FooterComponent() {
+        _classCallCheck(this, FooterComponent);
+      }
+
+      _createClass(FooterComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }]);
+
+      return FooterComponent;
+    }();
+
+    FooterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-footer',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./footer.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/footer/footer.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./footer.component.css */
+      "./src/app/footer/footer.component.css")).default]
+    })], FooterComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/header/header.component.css":
+  /*!*********************************************!*\
+    !*** ./src/app/header/header.component.css ***!
+    \*********************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppHeaderHeaderComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/header/header.component.ts":
+  /*!********************************************!*\
+    !*** ./src/app/header/header.component.ts ***!
+    \********************************************/
+
+  /*! exports provided: HeaderComponent */
+
+  /***/
+  function srcAppHeaderHeaderComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "HeaderComponent", function () {
+      return HeaderComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var HeaderComponent =
+    /*#__PURE__*/
+    function () {
+      function HeaderComponent() {
+        _classCallCheck(this, HeaderComponent);
+      }
+
+      _createClass(HeaderComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {}
+      }]);
+
+      return HeaderComponent;
+    }();
+
+    HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-header',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./header.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/header/header.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./header.component.css */
+      "./src/app/header/header.component.css")).default]
+    })], HeaderComponent);
+    /***/
+  },
+
+  /***/
   "./src/app/login/login.component.css":
   /*!*******************************************!*\
     !*** ./src/app/login/login.component.css ***!
@@ -1045,21 +1255,42 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
 
     var LoginComponent =
     /*#__PURE__*/
     function () {
-      function LoginComponent() {
+      function LoginComponent(route) {
         _classCallCheck(this, LoginComponent);
+
+        this.route = route;
       }
 
       _createClass(LoginComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          this.nextPage = false;
+        }
+      }, {
+        key: "authenticate",
+        value: function authenticate() {
+          this.nextPage = true;
+        }
       }]);
 
       return LoginComponent;
     }();
+
+    LoginComponent.ctorParameters = function () {
+      return [{
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+      }];
+    };
 
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-login',
