@@ -1,17 +1,14 @@
 <div class="form-group">
   <label for="">Select a Bot to Get Started</label>
-  <!-- <select class="form-control" id="botSelector">
-            <option>Select a Bot</option>
-            <option value="eBay Auction Sniper Bot">eBay Auction Sniper Bot</option>
-            <option value="Price Check Bot">Price Check Bot</option>
-            <option value="Car Buyer Bot">Car Buyer Bot</option>
-        </select> -->
-  <select class="form-control" id="botSelector">
-    <option *ngFor="let item of file['bot-names']"> {{item}}</option>
-
+  <select class="form-control" id="botSelector" [(ngModel)]="selectedBot" (change)="change()">
+    <option [value]="null" selected disabled >Select a Bot</option>
+    <option *ngFor="let item of file" [value]="item"> {{item.name}}</option>
   </select>
 </div>
-<div id="customBotFields">
-  <!-- Javascript customizes this part -->
+<div class="form-group">
+  <div *ngIf="selectedBot?.fields?.length>0">
+<app-bot-details [fields]="selectedBot.fields">
 
+</app-bot-details>
+  </div>
 </div>
