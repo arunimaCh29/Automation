@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BotDetailsComponent } from './bot-details/bot-details.component';
+import { ControlRoomService } from './services/control-room.service';
 
 @NgModule({
   declarations: [
@@ -26,11 +27,13 @@ import { BotDetailsComponent } from './bot-details/bot-details.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [
-    LoadersService
+    LoadersService,
+    ControlRoomService
   ],
   bootstrap: [AppComponent]
 })

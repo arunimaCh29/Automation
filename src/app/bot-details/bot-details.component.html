@@ -1,6 +1,17 @@
-<p>bot-details works!
-</p>
-  <div *ngFor="let item of fields">
-{{item.title}}
+<div *ngFor="let item of fields">
+  <div class="form-group">
+    <label for="">{{item.title}}</label>
+    <input class="form-control" type="{{item.restrictions.digitsOnly}}? number : text" *ngIf="item.type== 'input'" [(ngModel)]="item.value"
+      required="{{item.restrictions.required}}" >
+    <select class="form-control"  *ngIf="item.type=='dropdown'" class="form-control" id="botSelector" [(ngModel)]="item.value" required="{{item.restrictions.required}}">
+      <option [value]='null' selected disabled>Select a option</option>
+      <option *ngFor="let val of item.option" [value]="val"> {{val}}</option>
+    </select>
   </div>
+</div>
+<div class="form-group ">
+  <div class="row justify-content-center m-1">
+    <button type="submit" class="btn btn-primary ">Deploy</button>
+  </div>
+</div>
 

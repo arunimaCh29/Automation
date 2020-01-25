@@ -1,22 +1,28 @@
 <div *ngIf="!nextPage" id="login_section">
-  <div class="form-group">
-    <label>Control Room URL</label>
-    <input type="text" class="form-control" id="crURL" placeholder="URL">
-  </div>
-  <div class="form-group">
-    <label>Control Room Username</label>
-    <input type="text" class="form-control" id="crUsername" placeholder="Username">
-  </div>
-  <div class="form-group">
-    <label>Control Room Password</label>
-    <input type="password" class="form-control" id="crPassword" placeholder="Password">
-  </div>
-  <div class="submitButton">
-    <button type="button"  class="btn btn-primary login-btn" (click)="authenticate()">Submit</button>
-  </div>
-
+  <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
+    <div class="form-group">
+      <label>Control Room URL</label>
+      <input type="text"  [ngClass]="(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null" class="form-control" formControlName="url" id="crURL" placeholder="URL">
+        <span *ngIf=" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)" [ngClass]="(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null"> * Required</span>
+    </div>
+    <div class="form-group">
+      <label>Control Room Username</label>
+      <input type="text" [ngClass]="(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)  ? 'border-danger': null" class="form-control" id="crUsername" formControlName="username" placeholder="Username">
+      <span *ngIf=" (f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)" [ngClass]="(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted) ? 'text-danger': null"> * Required</span>
+    </div>
+    <div class="form-group">
+      <label>Control Room Password</label>
+      <input type="password"  [ngClass]="(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)   ? 'border-danger': null" class="form-control" id="crPassword" formControlName="password" placeholder="Password">
+      <span *ngIf="(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)" [ngClass]="(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted) ? 'text-danger': null"> * Required</span>
+    </div>
+    <div class="submitButton">
+      <button type="submit" class="btn btn-primary login-btn" >Submit</button>
+    </div>
+  </form>
 </div>
-
+<div class="row justify-content-center text-danger text-bold" *ngIf="errormsg!=''">
+{{errormsg}}
+</div>
 <div *ngIf="nextPage">
-<app-bot-pop-up></app-bot-pop-up>
+  <app-bot-pop-up></app-bot-pop-up>
 </div>

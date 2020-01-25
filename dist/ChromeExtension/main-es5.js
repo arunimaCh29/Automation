@@ -56,6 +56,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
   },
 
   /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/bot-details/bot-details.component.html":
+  /*!**********************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/bot-details/bot-details.component.html ***!
+    \**********************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppBotDetailsBotDetailsComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div *ngFor=\"let item of fields\">\n  <div class=\"form-group\">\n    <label for=\"\">{{item.title}}</label>\n    <input class=\"form-control\" type=\"{{item.restrictions.digitsOnly}}? number : text\" *ngIf=\"item.type== 'input'\" [(ngModel)]=\"item.value\"\n      required=\"{{item.restrictions.required}}\" >\n    <select class=\"form-control\"  *ngIf=\"item.type=='dropdown'\" class=\"form-control\" id=\"botSelector\" [(ngModel)]=\"item.value\" required=\"{{item.restrictions.required}}\">\n      <option [value]='null' selected disabled>Select a option</option>\n      <option *ngFor=\"let val of item.option\" [value]=\"val\"> {{val}}</option>\n    </select>\n  </div>\n</div>\n<div class=\"form-group \">\n  <div class=\"row justify-content-center m-1\">\n    <button type=\"submit\" class=\"btn btn-primary \">Deploy</button>\n  </div>\n</div>\n\n";
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/bot-pop-up/bot-pop-up.component.html":
   /*!********************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/bot-pop-up/bot-pop-up.component.html ***!
@@ -71,7 +91,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"form-group\">\n  <label for=\"\">Select a Bot to Get Started</label>\n  <!-- <select class=\"form-control\" id=\"botSelector\">\n            <option>Select a Bot</option>\n            <option value=\"eBay Auction Sniper Bot\">eBay Auction Sniper Bot</option>\n            <option value=\"Price Check Bot\">Price Check Bot</option>\n            <option value=\"Car Buyer Bot\">Car Buyer Bot</option>\n        </select> -->\n  <select class=\"form-control\" id=\"botSelector\">\n    <option *ngFor=\"let item of file['bot-names']\"> {{item}}</option>\n\n  </select>\n</div>\n<div id=\"customBotFields\">\n  <!-- Javascript customizes this part -->\n\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"form-group\">\n  <label for=\"\">Select a Bot to Get Started</label>\n  <select class=\"form-control\" id=\"botSelector\" [(ngModel)]=\"bot\" (change)=\"changeBot()\">\n    <option [value]='null' selected disabled >Select a Bot</option>\n    <option *ngFor=\"let item of file\" [value]=\"stringify(item)\"> {{item.name}}</option>\n  </select>\n</div>\n<div class=\"form-group\">\n  <div *ngIf=\"selectedBot?.fields\">\n<app-bot-details [Bot]=\"selectedBot\">\n\n</app-bot-details>\n  </div>\n</div>\n";
     /***/
   },
 
@@ -111,7 +131,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"modal-header\">\n  <h1 class=\"logo\">\n    <img src=\"images/icon.png\" alt=\"Bot Tasker\" class=\"logo-icon\"><span class=\"title\">Bot Tasker</span>\n    <span class=\"version\">(0.0.1)</span>\n  </h1>\n</div>\n<div class=\"content\">\n  <p>Easily send work for your bots</p>\n</div>\n";
+    __webpack_exports__["default"] = "<div class=\"modal-header\">\n  <h1 class=\"logo\">\n    <img src=\"/assets/images/icon.png\" alt=\"Bot Tasker\" class=\"logo-icon\"><span class=\"title\">Bot Tasker</span>\n    <span class=\"version\">(0.0.1)</span>\n  </h1>\n</div>\n<div class=\"content\">\n  <p>Easily send work for your bots</p>\n</div>\n";
     /***/
   },
 
@@ -131,7 +151,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div *ngIf=\"!nextPage\" id=\"login_section\">\n  <div class=\"form-group\">\n    <label>Control Room URL</label>\n    <input type=\"text\" class=\"form-control\" id=\"crURL\" placeholder=\"URL\">\n  </div>\n  <div class=\"form-group\">\n    <label>Control Room Username</label>\n    <input type=\"text\" class=\"form-control\" id=\"crUsername\" placeholder=\"Username\">\n  </div>\n  <div class=\"form-group\">\n    <label>Control Room Password</label>\n    <input type=\"password\" class=\"form-control\" id=\"crPassword\" placeholder=\"Password\">\n  </div>\n  <div class=\"submitButton\">\n    <button type=\"button\"  class=\"btn btn-primary login-btn\" (click)=\"authenticate()\">Submit</button>\n  </div>\n\n</div>\n\n<div *ngIf=\"nextPage\">\n<app-bot-pop-up></app-bot-pop-up>\n</div>\n";
+    __webpack_exports__["default"] = "<div *ngIf=\"!nextPage\" id=\"login_section\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"authenticate()\">\n    <div class=\"form-group\">\n      <label>Control Room URL</label>\n      <input type=\"text\"  [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null\" class=\"form-control\" formControlName=\"url\" id=\"crURL\" placeholder=\"URL\">\n        <span *ngIf=\" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)\" [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Username</label>\n      <input type=\"text\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)  ? 'border-danger': null\" class=\"form-control\" id=\"crUsername\" formControlName=\"username\" placeholder=\"Username\">\n      <span *ngIf=\" (f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Password</label>\n      <input type=\"password\"  [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)   ? 'border-danger': null\" class=\"form-control\" id=\"crPassword\" formControlName=\"password\" placeholder=\"Password\">\n      <span *ngIf=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)\" [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"submitButton\">\n      <button type=\"submit\" class=\"btn btn-primary login-btn\" >Submit</button>\n    </div>\n  </form>\n</div>\n<div class=\"row justify-content-center text-danger text-bold\" *ngIf=\"errormsg!=''\">\n{{errormsg}}\n</div>\n<div *ngIf=\"nextPage\">\n  <app-bot-pop-up></app-bot-pop-up>\n</div>\n";
     /***/
   },
 
@@ -863,62 +883,170 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! ./app-routing.module */
     "./src/app/app-routing.module.ts");
     /* harmony import */
 
 
-    var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./app.component */
     "./src/app/app.component.ts");
     /* harmony import */
 
 
-    var _login_login_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _login_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./login/login.component */
     "./src/app/login/login.component.ts");
     /* harmony import */
 
 
-    var _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./bot-pop-up/bot-pop-up.component */
     "./src/app/bot-pop-up/bot-pop-up.component.ts");
     /* harmony import */
 
 
-    var _services_loaders_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _services_loaders_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./services/loaders.service */
     "./src/app/services/loaders.service.ts");
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/fesm2015/http.js");
     /* harmony import */
 
 
-    var _header_header_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    var _header_header_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! ./header/header.component */
     "./src/app/header/header.component.ts");
     /* harmony import */
 
 
-    var _footer_footer_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    var _footer_footer_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! ./footer/footer.component */
     "./src/app/footer/footer.component.ts");
+    /* harmony import */
+
+
+    var _bot_details_bot_details_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! ./bot-details/bot-details.component */
+    "./src/app/bot-details/bot-details.component.ts");
+    /* harmony import */
+
+
+    var _services_control_room_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! ./services/control-room.service */
+    "./src/app/services/control-room.service.ts");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_5__["LoginComponent"], _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_6__["BotPopUpComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_9__["HeaderComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_10__["FooterComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"]],
-      providers: [_services_loaders_service__WEBPACK_IMPORTED_MODULE_7__["LoadersService"]],
-      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"], _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"], _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_7__["BotPopUpComponent"], _header_header_component__WEBPACK_IMPORTED_MODULE_10__["HeaderComponent"], _footer_footer_component__WEBPACK_IMPORTED_MODULE_11__["FooterComponent"], _bot_details_bot_details_component__WEBPACK_IMPORTED_MODULE_12__["BotDetailsComponent"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"]],
+      providers: [_services_loaders_service__WEBPACK_IMPORTED_MODULE_8__["LoadersService"], _services_control_room_service__WEBPACK_IMPORTED_MODULE_13__["ControlRoomService"]],
+      bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })], AppModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/bot-details/bot-details.component.css":
+  /*!*******************************************************!*\
+    !*** ./src/app/bot-details/bot-details.component.css ***!
+    \*******************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppBotDetailsBotDetailsComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JvdC1kZXRhaWxzL2JvdC1kZXRhaWxzLmNvbXBvbmVudC5jc3MifQ== */";
+    /***/
+  },
+
+  /***/
+  "./src/app/bot-details/bot-details.component.ts":
+  /*!******************************************************!*\
+    !*** ./src/app/bot-details/bot-details.component.ts ***!
+    \******************************************************/
+
+  /*! exports provided: BotDetailsComponent */
+
+  /***/
+  function srcAppBotDetailsBotDetailsComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "BotDetailsComponent", function () {
+      return BotDetailsComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+
+    var BotDetailsComponent =
+    /*#__PURE__*/
+    function () {
+      function BotDetailsComponent() {
+        _classCallCheck(this, BotDetailsComponent);
+      }
+
+      _createClass(BotDetailsComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.fields = this.Bot.fields;
+        }
+      }, {
+        key: "ngOnChanges",
+        value: function ngOnChanges(changes) {
+          var change = changes.Bot;
+          this.Bot = change.currentValue;
+          this.fields = this.Bot.fields;
+          console.log(this.fields);
+        }
+      }]);
+
+      return BotDetailsComponent;
+    }();
+
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()], BotDetailsComponent.prototype, "Bot", void 0);
+    BotDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-bot-details',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./bot-details.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/bot-details/bot-details.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./bot-details.component.css */
+      "./src/app/bot-details/bot-details.component.css")).default]
+    })], BotDetailsComponent);
     /***/
   },
 
@@ -994,34 +1122,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var _this = this;
 
+          this.bot = null;
           this.fileLoader.getConfigFile().subscribe(function (val) {
-            _this.file = val;
-            console.log(val);
-          });
-          document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('#botSelector').addEventListener('click', this.selectedBot);
+            _this.file = val.bots;
           });
         }
       }, {
-        key: "selectedBot",
-        value: function selectedBot() {
-          this.selectedBotName = document.getElementById('botSelector').nodeValue; //alert("You selected: " + selectedBotName);
-
-          if (this.selectedBotName == 'eBay Auction Sniper Bot') {
-            document.querySelector('#customBotFields').innerHTML = "\n        <div class=\"form-group\">\n            <label>Auction URL</label>\n            <input type=\"text\" class=\"form-control\" id=\"auctionURL\" placeholder=\"Full URL of Auction\">\n        </div>\n        <div class=\"form-group\">\n            <label>Maximum Bid</label>\n            <input type=\"text\" class=\"form-control\" id=\"maximumBid\" placeholder=\"Highest Amount You'll Bid\">\n        </div>\n            <div class=\"submitButton\">\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n        </div>";
-          }
-
-          if (this.selectedBotName == 'Select a Bot') {
-            document.querySelector('#customBotFields').innerHTML = "";
-          }
-
-          if (this.selectedBotName == 'Price Check Bot') {
-            document.querySelector('#customBotFields').innerHTML = "\n        <div class=\"form-group\">\n            <label>Amazon URL for Item</label>\n            <input type=\"text\" class=\"form-control\" id=\"auctionURL\" placeholder=\"Amazon URL\">\n        </div>\n        <br>\n        <label>Cross Check Against</label><br>\n        <div class=\"flex-container\">\n            <div class=\"form-check form-check-inline\">\n                <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox1\" value=\"option1\">\n                <label class=\"form-check-label\" for=\"inlineCheckbox1\">Best Buy</label>\n            </div>\n            <div class=\"form-check form-check-inline\">\n                <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox2\" value=\"option2\">\n                <label class=\"form-check-label\" for=\"inlineCheckbox2\">Walmart</label>\n            </div>\n            <div class=\"form-check form-check-inline\">\n                <input class=\"form-check-input\" type=\"checkbox\" id=\"inlineCheckbox3\" value=\"option3\">\n                <label class=\"form-check-label\" for=\"inlineCheckbox3\">Target</label>\n            </div>\n        </div>\n        <div class=\"submitButton\">\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n        </div>";
-          }
-
-          if (this.selectedBotName == 'Car Buyer Bot') {
-            document.querySelector('#customBotFields').innerHTML = "\n        <div class=\"form-group\">\n            <label>Car Make</label>\n            <input type=\"text\" class=\"form-control\" id=\"carMake\" placeholder=\"Name of Make\">\n        </div>\n        <div class=\"form-group\">\n            <label>Car Model</label>\n            <input type=\"text\" class=\"form-control\" id=\"carModel\" placeholder=\"Name of Model\">\n        </div>\n        <div class=\"form-group\">\n            <label>Search Radius (in miles)</label>\n            <select class=\"form-control\" id=\"botSelector\">\n                <option value=\"10\">10 mi</option>\n                <option value=\"25\">25 mi</option>\n                <option value=\"50\">50 mi</option>\n                <option value=\"100\">100 mi</option>\n        </select>\n        </div>\n            <div class=\"submitButton\">\n            <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n        </div>";
-          }
+        key: "stringify",
+        value: function stringify(text) {
+          return JSON.stringify(text);
+        }
+      }, {
+        key: "changeBot",
+        value: function changeBot() {
+          this.selectedBot = JSON.parse(this.bot);
         }
       }]);
 
@@ -1261,25 +1375,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _services_control_room_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ../services/control-room.service */
+    "./src/app/services/control-room.service.ts");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
 
     var LoginComponent =
     /*#__PURE__*/
     function () {
-      function LoginComponent(route) {
+      function LoginComponent(route, CRService, formBuilder) {
         _classCallCheck(this, LoginComponent);
 
         this.route = route;
+        this.CRService = CRService;
+        this.formBuilder = formBuilder;
       }
 
       _createClass(LoginComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
           this.nextPage = false;
+          this.submitted = false;
+          this.errormsg = "";
+          this.loginForm = this.formBuilder.group({
+            url: ["", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
+            username: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+          });
         }
       }, {
         key: "authenticate",
         value: function authenticate() {
-          this.nextPage = true;
+          var _this2 = this;
+
+          this.submitted = true;
+
+          if (this.loginForm.invalid) {
+            return;
+          }
+
+          this.CRService.authentication(this.f.url.value, this.f.username.value, this.f.password.value).subscribe(function (res) {
+            console.log(res);
+
+            _this2.CRService.settoken(res["token"]);
+
+            _this2.nextPage = true;
+          }, function (err) {
+            _this2.errormsg = " Cannot Login! Check Credentials again";
+          });
+        }
+      }, {
+        key: "f",
+        get: function get() {
+          return this.loginForm.controls;
         }
       }]);
 
@@ -1289,11 +1445,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     LoginComponent.ctorParameters = function () {
       return [{
         type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]
+      }, {
+        type: _services_control_room_service__WEBPACK_IMPORTED_MODULE_3__["ControlRoomService"]
+      }, {
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"]
       }];
     };
 
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-      selector: 'app-login',
+      selector: "app-login",
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! raw-loader!./login.component.html */
       "./node_modules/raw-loader/dist/cjs.js!./src/app/login/login.component.html")).default,
@@ -1301,6 +1461,93 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       /*! ./login.component.css */
       "./src/app/login/login.component.css")).default]
     })], LoginComponent);
+    /***/
+  },
+
+  /***/
+  "./src/app/services/control-room.service.ts":
+  /*!**************************************************!*\
+    !*** ./src/app/services/control-room.service.ts ***!
+    \**************************************************/
+
+  /*! exports provided: ControlRoomService */
+
+  /***/
+  function srcAppServicesControlRoomServiceTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ControlRoomService", function () {
+      return ControlRoomService;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/common/http */
+    "./node_modules/@angular/common/fesm2015/http.js");
+
+    var ControlRoomService =
+    /*#__PURE__*/
+    function () {
+      function ControlRoomService(http) {
+        _classCallCheck(this, ControlRoomService);
+
+        this.http = http;
+      }
+
+      _createClass(ControlRoomService, [{
+        key: "authentication",
+        value: function authentication(CRUrl, user, password) {
+          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          });
+          var options = {
+            headers: headers
+          };
+          return this.http.post(CRUrl + "/v1/authentication", {
+            username: user,
+            password: password
+          }, options);
+        }
+      }, {
+        key: "gettoken",
+        value: function gettoken() {
+          return this.jwtToken;
+        }
+      }, {
+        key: "settoken",
+        value: function settoken(token) {
+          this.jwtToken = token;
+        }
+      }]);
+
+      return ControlRoomService;
+    }();
+
+    ControlRoomService.ctorParameters = function () {
+      return [{
+        type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]
+      }];
+    };
+
+    ControlRoomService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()], ControlRoomService);
     /***/
   },
 
@@ -1354,7 +1601,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(LoadersService, [{
         key: "getConfigFile",
         value: function getConfigFile() {
-          return this.http.get('config/configuration.json');
+          return this.http.get('/assets/configuration/configuration.json');
         }
       }]);
 

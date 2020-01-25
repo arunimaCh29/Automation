@@ -1,0 +1,69 @@
+{
+  "bots":[{
+  	"name":"ebay Auction Sniper Bot",
+  	"botQueueID":7,
+  	"fields":[
+  	{
+  		"title":"Auction URL",
+      "type":"input",
+      "value":"",
+  		"restrictions":
+  		{
+  			"required":true,
+  			"digitsOnly":false
+  		}
+  	},
+  	{
+  		"title":"Max Bid",
+      "type":"input",
+      "value":"",
+  		"restrictions":
+  		{
+  			"required":true,
+  			"digitsOnly":true
+  		}
+  	}
+
+  	]
+  } ,
+{
+  	"name":"Amazon Bid",
+  	"botQueueID":"8",
+  	"fields":[
+  	{
+  		"title":"Auction URL",
+      "type":"input",
+      "value":"",
+  		"restrictions":
+  		{
+  			"required":true,
+  			"digitsOnly":false
+  		}
+  	},
+{
+  		"title":"Want to purchase",
+      "type":"dropdown",
+      "option":["yes","no","maybe"],
+      "value":"",
+  		"restrictions":
+  		{
+        "required":true,
+        "digitsOnly":false
+  		}
+  	},
+  	{
+  		"title":"Max Bid",
+      "type":"input",
+      "value":"",
+  		"restrictions":
+  		{
+  			"required":true,
+  			"digitsOnly":true
+  		}
+  	}
+
+  	]
+  }
+
+]
+}

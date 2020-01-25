@@ -9,7 +9,7 @@ export class LoadersService {
 
   getConfigFile() : Observable<any> {
 
-    return this.http.get('/assets/configuration.json');
+    return this.http.get('/assets/configuration/configuration.json');
 
   }
 }

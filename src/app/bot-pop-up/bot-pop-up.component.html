@@ -1,13 +1,13 @@
 <div class="form-group">
   <label for="">Select a Bot to Get Started</label>
-  <select class="form-control" id="botSelector" [(ngModel)]="selectedBot" (change)="change()">
-    <option [value]="null" selected disabled >Select a Bot</option>
-    <option *ngFor="let item of file" [value]="item"> {{item.name}}</option>
+  <select class="form-control" id="botSelector" [(ngModel)]="bot" (change)="changeBot()">
+    <option [value]='null' selected disabled >Select a Bot</option>
+    <option *ngFor="let item of file" [value]="stringify(item)"> {{item.name}}</option>
   </select>
 </div>
 <div class="form-group">
-  <div *ngIf="selectedBot?.fields?.length>0">
-<app-bot-details [fields]="selectedBot.fields">
+  <div *ngIf="selectedBot?.fields">
+<app-bot-details [Bot]="selectedBot">
 
 </app-bot-details>
   </div>

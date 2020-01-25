@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { LoadersService } from '../services/loaders.service';
+import { BotConfiguration } from '../models/botConfiguration';
 
 @Component({
   selector: 'app-bot-pop-up',
@@ -8,20 +9,23 @@ import { LoadersService } from '../services/loaders.service';
 })
 export class BotPopUpComponent implements OnInit {
 
-selectedBot;
+selectedBot: BotConfiguration;
+bot;
 file;
 
   constructor(private fileLoader: LoadersService) { }
 
   ngOnInit() {
-    this.selectedBot= null;
+    this.bot= null;
     this.fileLoader.getConfigFile().subscribe(val=> {
       this.file= val.bots;
-      console.log(val.bots);
     });
   }
 
-  change() {
-    console.log("onchange"+this.selectedBot);
+stringify(text) {
+  return JSON.stringify(text);
+}
+  changeBot() {
+    this.selectedBot = JSON.parse(this.bot);
   }
 }
