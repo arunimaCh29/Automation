@@ -63,6 +63,11 @@
   	}
 
   	]
+  },
+   {
+    "name":"APITest",
+    "botQueueID":"8",
+    "fields":[]
   }
 
 ]

@@ -1,11 +1,13 @@
 {
   "bots":[{
   	"name":"ebay Auction Sniper Bot",
-  	"botQueueID":7,
+  	"path":"Automation Anywhere\\My Tasks\\APITest.atmx",
   	"fields":[
   	{
   		"title":"Auction URL",
       "type":"input",
+      "variable":"vValueFromAPI",
+      "variableType": "string",
       "value":"",
   		"restrictions":
   		{
@@ -16,6 +18,8 @@
   	{
   		"title":"Max Bid",
       "type":"input",
+      "variable":"vValueFromAPI",
+      "variableType": "string",
       "value":"",
   		"restrictions":
   		{
@@ -28,11 +32,13 @@
   } ,
 {
   	"name":"Amazon Bid",
-  	"botQueueID":"8",
+    "path":"Automation Anywhere\\My Tasks\\APITest.atmx",
   	"fields":[
   	{
   		"title":"Auction URL",
       "type":"input",
+      "variable":"vValueFromAPI",
+      "variableType": "string",
       "value":"",
   		"restrictions":
   		{
@@ -43,6 +49,8 @@
 {
   		"title":"Want to purchase",
       "type":"dropdown",
+      "variable":"vValueFromAPI",
+      "variableType": "string",
       "option":["yes","no","maybe"],
       "value":"",
   		"restrictions":
@@ -54,6 +62,8 @@
   	{
   		"title":"Max Bid",
       "type":"input",
+      "variable":"vValueFromAPI",
+      "variableType": "string",
       "value":"",
   		"restrictions":
   		{
@@ -63,6 +73,22 @@
   	}
 
   	]
+  },
+   {
+    "name":"APITest",
+    "path":"Automation Anywhere\\My Tasks\\APITest.atmx",
+    "fields":[{
+      "title":"Message Box Value",
+      "variable":"vValueFromAPI",
+      "variableType": "string",
+      "type":"input",
+      "value":"",
+  		"restrictions":
+  		{
+  			"required":true,
+  			"digitsOnly":false
+  		}
+  	}]
   }
 
 ]

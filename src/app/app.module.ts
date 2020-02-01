@@ -13,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BotDetailsComponent } from './bot-details/bot-details.component';
 import { ControlRoomService } from './services/control-room.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { ControlRoomService } from './services/control-room.service';
   ],
   providers: [
     LoadersService,
-    ControlRoomService
+    ControlRoomService,
+    UserService
+
   ],
   bootstrap: [AppComponent]
 })

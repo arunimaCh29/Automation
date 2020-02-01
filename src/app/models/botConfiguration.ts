@@ -2,6 +2,6 @@ import { Field } from "./field";
 
 export interface BotConfiguration {
   name: string;
-  botQueueID: number;
+  path: string;
   fields: Field[];
 }
