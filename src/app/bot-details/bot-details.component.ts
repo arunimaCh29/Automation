@@ -53,10 +53,11 @@ export class BotDetailsComponent implements OnInit, OnChanges {
   onDeploy() {
 
     const botVariables: { [k: string]: any} = {};
-    const insideValue: { [k: string]: any} = {};
+
     // tslint:disable-next-line: forin
     for (const i in this.fields) {
       if (this.fields[i].variableType === 'string') {
+        const insideValue: { [k: string]: any} = {};
           insideValue[this.fields[i].variableType] =this.fields[i].value;
 
           botVariables[this.fields[i].variable]= insideValue;

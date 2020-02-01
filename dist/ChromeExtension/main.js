@@ -543,10 +543,10 @@ let BotDetailsComponent = class BotDetailsComponent {
     }
     onDeploy() {
         const botVariables = {};
-        const insideValue = {};
         // tslint:disable-next-line: forin
         for (const i in this.fields) {
             if (this.fields[i].variableType === 'string') {
+                const insideValue = {};
                 insideValue[this.fields[i].variableType] = this.fields[i].value;
                 botVariables[this.fields[i].variable] = insideValue;
             }

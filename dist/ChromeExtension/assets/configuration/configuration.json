@@ -6,7 +6,7 @@
   	{
   		"title":"Auction URL",
       "type":"input",
-      "variable":"vValueFromAPI",
+      "variable":"vValueFromAPI5",
       "variableType": "string",
       "value":"",
   		"restrictions":
@@ -18,7 +18,7 @@
   	{
   		"title":"Max Bid",
       "type":"input",
-      "variable":"vValueFromAPI",
+      "variable":"vValueFromAPI4",
       "variableType": "string",
       "value":"",
   		"restrictions":
@@ -37,7 +37,7 @@
   	{
   		"title":"Auction URL",
       "type":"input",
-      "variable":"vValueFromAPI",
+      "variable":"vValueFromAPI3",
       "variableType": "string",
       "value":"",
   		"restrictions":
@@ -49,9 +49,9 @@
 {
   		"title":"Want to purchase",
       "type":"dropdown",
-      "variable":"vValueFromAPI",
+      "variable":"vValueFromAPI2",
       "variableType": "string",
-      "option":["yes","no","maybe"],
+      "options":["yes","no","maybe"],
       "value":"",
   		"restrictions":
   		{
@@ -62,7 +62,7 @@
   	{
   		"title":"Max Bid",
       "type":"input",
-      "variable":"vValueFromAPI",
+      "variable":"vValueFromAPI1",
       "variableType": "string",
       "value":"",
   		"restrictions":
