@@ -1,8 +1,11 @@
 <div *ngIf="!nextPage" id="login_section">
   <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
-    <div class="form-group">
+    <div class="form-group row">
       <label>Control Room URL</label>
-      <input type="text"  [ngClass]="(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null" class="form-control" formControlName="url" id="crURL" placeholder="URL">
+      <select   [ngClass]="(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null" class="dropdown form-control " formControlName="url" id="crURL">
+        <option  [value]="null" selected disabled>Select Control Room Url</option>
+        <option  *ngFor="let item of crUrls" [value]="item"> {{item}}</option>
+      </select>
         <span *ngIf=" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)" [ngClass]="(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null"> * Required</span>
     </div>
     <div class="form-group">

@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"!nextPage\" id=\"login_section\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"authenticate()\">\n    <div class=\"form-group\">\n      <label>Control Room URL</label>\n      <input type=\"text\"  [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null\" class=\"form-control\" formControlName=\"url\" id=\"crURL\" placeholder=\"URL\">\n        <span *ngIf=\" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)\" [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Username</label>\n      <input type=\"text\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)  ? 'border-danger': null\" class=\"form-control\" id=\"crUsername\" formControlName=\"username\" placeholder=\"Username\">\n      <span *ngIf=\" (f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Password</label>\n      <input type=\"password\"  [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)   ? 'border-danger': null\" class=\"form-control\" id=\"crPassword\" formControlName=\"password\" placeholder=\"Password\">\n      <span *ngIf=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)\" [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"submitButton\">\n      <button type=\"submit\" class=\"btn btn-primary login-btn\" >Submit</button>\n    </div>\n  </form>\n</div>\n<div class=\"row justify-content-center text-danger text-bold\" *ngIf=\"errormsg!=''\">\n{{errormsg}}\n</div>\n<div *ngIf=\"nextPage\">\n  <app-bot-pop-up></app-bot-pop-up>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"!nextPage\" id=\"login_section\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"authenticate()\">\n    <div class=\"form-group row\">\n      <label>Control Room URL</label>\n      <select   [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null\" class=\"dropdown form-control \" formControlName=\"url\" id=\"crURL\">\n        <option  [value]=\"null\" selected disabled>Select Control Room Url</option>\n        <option  *ngFor=\"let item of crUrls\" [value]=\"item\"> {{item}}</option>\n      </select>\n        <span *ngIf=\" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)\" [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Username</label>\n      <input type=\"text\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)  ? 'border-danger': null\" class=\"form-control\" id=\"crUsername\" formControlName=\"username\" placeholder=\"Username\">\n      <span *ngIf=\" (f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Password</label>\n      <input type=\"password\"  [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)   ? 'border-danger': null\" class=\"form-control\" id=\"crPassword\" formControlName=\"password\" placeholder=\"Password\">\n      <span *ngIf=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)\" [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"submitButton\">\n      <button type=\"submit\" class=\"btn btn-primary login-btn\" >Submit</button>\n    </div>\n  </form>\n</div>\n<div class=\"row justify-content-center text-danger text-bold\" *ngIf=\"errormsg!=''\">\n{{errormsg}}\n</div>\n<div *ngIf=\"nextPage\">\n  <app-bot-pop-up></app-bot-pop-up>\n</div>\n");
 
 /***/ }),
 
@@ -532,7 +532,9 @@ let BotDetailsComponent = class BotDetailsComponent {
             if (res.valid) {
             }
             else {
-                this.controlRService.authentication(this.user.crUrl, this.user.username, this.user.password).subscribe(res => {
+                this.controlRService
+                    .authentication(this.user.crUrl, this.user.username, this.user.password)
+                    .subscribe(res => {
                     this.user.token = res.token;
                 });
             }
@@ -545,30 +547,36 @@ let BotDetailsComponent = class BotDetailsComponent {
         const botVariables = {};
         // tslint:disable-next-line: forin
         for (const i in this.fields) {
-            if (this.fields[i].variableType === 'string') {
+            if (this.fields[i].variableType === "string" || this.fields[i].variableType === "number") {
                 const insideValue = {};
                 insideValue[this.fields[i].variableType] = this.fields[i].value;
                 botVariables[this.fields[i].variable] = insideValue;
             }
-            this.controlRService.verifyToken(this.user).subscribe(res => {
-                if (!res.valid) {
-                    this.controlRService.authentication(this.user.crUrl, this.user.username, this.user.password).subscribe(res => {
-                        // tslint:disable-next-line: quotemark
-                        this.user.token = res.token;
-                    });
-                }
-                this.controlRService.getFileID(this.user, this.Bot.path).subscribe(res => {
-                    this.fileID = res.list[0].id;
-                    this.controlRService.deploymentWithVariables(botVariables, this.fileID, this.runnerId, this.Bot.fields, this.user).subscribe(res => {
-                        this.deploymsg = 'Bot Successfully deployed';
-                    }, err => {
-                        this.deploymsg = 'Bot deployment Unsuccesful';
-                    });
-                });
-            }, err => {
-                this.deploymsg = 'File does not exist';
-            });
         }
+        this.controlRService.verifyToken(this.user).subscribe(res => {
+            if (!res.valid) {
+                this.controlRService
+                    .authentication(this.user.crUrl, this.user.username, this.user.password)
+                    .subscribe(res => {
+                    // tslint:disable-next-line: quotemark
+                    this.user.token = res.token;
+                });
+            }
+            this.controlRService
+                .getFileID(this.user, this.Bot.path)
+                .subscribe(res => {
+                this.fileID = res.list[0].id;
+                this.controlRService
+                    .deploymentWithVariables(botVariables, this.fileID, this.runnerId, this.Bot.fields, this.user)
+                    .subscribe(res => {
+                    this.deploymsg = "Bot Successfully deployed";
+                }, err => {
+                    this.deploymsg = "Bot deployment Unsuccesful";
+                });
+            });
+        }, err => {
+            this.deploymsg = "File does not exist";
+        });
     }
 };
 BotDetailsComponent.ctorParameters = () => [
@@ -580,7 +588,7 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ], BotDetailsComponent.prototype, "Bot", void 0);
 BotDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-bot-details',
+        selector: "app-bot-details",
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./bot-details.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/bot-details/bot-details.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./bot-details.component.css */ "./src/app/bot-details/bot-details.component.css")).default]
     })
@@ -768,6 +776,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_control_room_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/control-room.service */ "./src/app/services/control-room.service.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_loaders_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/loaders.service */ "./src/app/services/loaders.service.ts");
+
 
 
 
@@ -775,11 +785,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginComponent = class LoginComponent {
-    constructor(route, CRService, formBuilder, userService) {
+    constructor(route, CRService, formBuilder, userService, loaderService) {
         this.route = route;
         this.CRService = CRService;
         this.formBuilder = formBuilder;
         this.userService = userService;
+        this.loaderService = loaderService;
         this.user = {};
     }
     ngOnInit() {
@@ -787,9 +798,12 @@ let LoginComponent = class LoginComponent {
         this.submitted = false;
         this.errormsg = "";
         this.loginForm = this.formBuilder.group({
-            url: ["", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
+            url: [null, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]],
             username: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
             password: ["", _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+        this.loaderService.getConfigFile().subscribe(res => {
+            this.crUrls = res["CRUrls"];
         });
     }
     get f() {
@@ -819,7 +833,8 @@ LoginComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _services_control_room_service__WEBPACK_IMPORTED_MODULE_3__["ControlRoomService"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
-    { type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"] }
+    { type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"] },
+    { type: _services_loaders_service__WEBPACK_IMPORTED_MODULE_6__["LoadersService"] }
 ];
 LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

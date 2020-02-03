@@ -4,6 +4,7 @@ import { ControlRoomService } from "../services/control-room.service";
 import { Form, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { User } from '../models/User';
 import { UserService } from '../services/user.service';
+import { LoadersService } from '../services/loaders.service';
 
 @Component({
   selector: "app-login",
@@ -16,11 +17,13 @@ export class LoginComponent implements OnInit {
   submitted: boolean;
   errormsg: string;
   user= {} as User;
+  crUrls: [];
   constructor(
     private route: ActivatedRoute,
     private CRService: ControlRoomService,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private loaderService: LoadersService
   ) {}
 
   ngOnInit() {
@@ -28,10 +31,14 @@ export class LoginComponent implements OnInit {
     this.submitted = false;
     this.errormsg = "";
     this.loginForm = this.formBuilder.group({
-      url: ["", [Validators.required]],
+      url: [null, [Validators.required]],
       username: ["", Validators.required],
       password: ["", Validators.required]
     });
+
+    this.loaderService.getConfigFile().subscribe(res=> {
+      this.crUrls = res["CRUrls"];
+    })
   }
 
   get f() {

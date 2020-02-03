@@ -1,4 +1,5 @@
 {
+  "CRUrls":[ "http://ec2-34-214-73-52.us-west-2.compute.amazonaws.com", "https://ec2-34-214-73-52.us-west-2.compute.amazonaws.com/"],
   "bots":[{
   	"name":"ebay Auction Sniper Bot",
   	"path":"Automation Anywhere\\My Tasks\\APITest.atmx",
