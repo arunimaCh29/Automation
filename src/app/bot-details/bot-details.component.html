@@ -20,9 +20,9 @@
 
 <div class="form-group ">
   <div class="row justify-content-center m-1">
-    <button type="submit" class="btn btn-primary " (click)="onDeploy()">Deploy</button>
+    <button type="submit" class="btn btn-primary " (click)="onDeploy()" >Deploy</button>
   </div>
 </div>
 
-<span class="row justify-content-center m-1">{{deploymsg}}</span>
+<div class="row justify-content-center m-1 alert alert-info " *ngIf="deploymsg">{{deploymsg}}</div>
 
