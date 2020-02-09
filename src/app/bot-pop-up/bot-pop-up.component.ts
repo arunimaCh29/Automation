@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { LoadersService } from '../services/loaders.service';
 import { BotConfiguration } from '../models/botConfiguration';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-bot-pop-up',

@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<app-header></app-header>\n<app-login></app-login>\n<app-footer></app-footer>\n<router-outlet></router-outlet>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<app-header></app-header>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n\n");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngFor=\"let item of fields\">\n  <div class=\"form-group\">\n    <label for=\"\">{{item.title}}</label>\n    <input class=\"form-control m-1\" type=\"{{item.restrictions.digitsOnly}}? number : text\" *ngIf=\"item.type== 'input'\" [(ngModel)]=\"item.value\"\n      required=\"{{item.restrictions.required}}\" >\n    <select class=\"form-control \"  *ngIf=\"item.type=='dropdown'\"  id=\"botSelector\" [(ngModel)]=\"item.value\" required=\"{{item.restrictions.required}}\">\n      <option [value]='null' selected disabled>Select a option</option>\n      <option *ngFor=\"let val of item.options\" [value]=\"val\"> {{val}}</option>\n    </select>\n  </div>\n</div>\n\n  <div class=\"form-group \">\n    <label for=\"\">Select a Bot Runner</label>\n    <select class=\"form-control \"  id=\"runnerSelector\" [(ngModel)]=\"runnerId\" required=\"true\">\n      <option [value]='null' selected disabled>Select Bot Runner</option>\n      <option *ngFor=\"let val of runners\" [value]=\"val.id\"> {{val.userName}}</option>\n    </select>\n  </div>\n\n<div class=\"form-group \">\n  <div class=\"row justify-content-center m-1\">\n    <button type=\"submit\" class=\"btn btn-primary \" (click)=\"onDeploy()\" >Deploy</button>\n  </div>\n</div>\n\n<div class=\"row justify-content-center m-1 alert alert-info \" *ngIf=\"deploymsg\">{{deploymsg}}</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngFor=\"let item of fields\">\n  <div class=\"form-group\">\n    <label for=\"\">{{item.title}}</label>\n    <input class=\"form-control m-1\" type=\"{{item.restrictions.digitsOnly ? 'number' : 'text'}}\" *ngIf=\"item.type== 'input'\" [(ngModel)]=\"item.value\"\n      required=\"{{item.restrictions.required}}\"  >\n    <select class=\"form-control \"  *ngIf=\"item.type=='dropdown'\"  id=\"botSelector\" [(ngModel)]=\"item.value\" required=\"{{item.restrictions.required}}\">\n      <option [value]='null' selected disabled>Select a option</option>\n      <option *ngFor=\"let val of item.options\" [value]=\"val\"> {{val}}</option>\n    </select>\n  </div>\n</div>\n\n  <div class=\"form-group \">\n    <label for=\"\">Select a Bot Runner</label>\n    <select class=\"form-control \"  id=\"runnerSelector\" [(ngModel)]=\"runnerId\" required=\"true\">\n      <option [value]='null' selected disabled>Select Bot Runner</option>\n      <option *ngFor=\"let val of runners\" [value]=\"val.id\"> {{val.hostName}}</option>\n    </select>\n  </div>\n\n<div class=\"form-group \">\n  <div class=\"row justify-content-center m-1\">\n    <button type=\"submit\" class=\"btn btn-primary \" (click)=\"onDeploy()\"  >Deploy</button>\n  </div>\n</div>\n\n<div id=\"showMe\" class=\"row justify-content-center m-1 mt-2 alert \"  [ngClass]=\"error? 'alert-danger': 'alert-info' \" *ngIf=\"deploymsg\">{{deploymsg}}</div>\n\n");
 
 /***/ }),
 
@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngIf=\"!nextPage\" id=\"login_section\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"authenticate()\">\n    <div class=\"form-group row\">\n      <label>Control Room URL</label>\n      <select   [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null\" class=\"dropdown form-control \" formControlName=\"url\" id=\"crURL\">\n        <option  [value]=\"null\" selected disabled>Select Control Room Url</option>\n        <option  *ngFor=\"let item of crUrls\" [value]=\"item\"> {{item}}</option>\n      </select>\n        <span *ngIf=\" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)\" [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Username</label>\n      <input type=\"text\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)  ? 'border-danger': null\" class=\"form-control\" id=\"crUsername\" formControlName=\"username\" placeholder=\"Username\">\n      <span *ngIf=\" (f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Password</label>\n      <input type=\"password\"  [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)   ? 'border-danger': null\" class=\"form-control\" id=\"crPassword\" formControlName=\"password\" placeholder=\"Password\">\n      <span *ngIf=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)\" [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"submitButton\">\n      <button type=\"submit\" class=\"btn btn-primary login-btn\" >Submit</button>\n    </div>\n  </form>\n</div>\n<div class=\"row justify-content-center text-danger text-bold\" *ngIf=\"errormsg!=''\">\n{{errormsg}}\n</div>\n<div *ngIf=\"nextPage\">\n  <app-bot-pop-up></app-bot-pop-up>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div  id=\"login_section\">\n  <form [formGroup]=\"loginForm\" (ngSubmit)=\"authenticate()\">\n    <div class=\"form-group row\">\n      <label>Control Room URL</label>\n      <select   [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)? 'border-danger': null\" class=\"dropdown form-control \" formControlName=\"url\" id=\"crURL\">\n        <option  [value]=\"null\" selected disabled>Select Control Room Url</option>\n        <option  *ngFor=\"let item of crUrls\" [value]=\"item\"> {{item}}</option>\n      </select>\n        <span *ngIf=\" (f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted)\" [ngClass]=\"(f.url.errors?.required && f.url.dirty ) || (f.url.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Username</label>\n      <input type=\"text\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)  ? 'border-danger': null\" class=\"form-control\" id=\"crUsername\" formControlName=\"username\" placeholder=\"Username\">\n      <span *ngIf=\" (f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted)\" [ngClass]=\"(f.username.errors?.required && f.username.dirty) || (f.username.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"form-group\">\n      <label>Control Room Password</label>\n      <input type=\"password\"  [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)   ? 'border-danger': null\" class=\"form-control\" id=\"crPassword\" formControlName=\"password\" placeholder=\"Password\">\n      <span *ngIf=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted)\" [ngClass]=\"(f.password.errors?.required && f.password.dirty) || (f.password.untouched && submitted) ? 'text-danger': null\"> * Required</span>\n    </div>\n    <div class=\"submitButton\">\n      <button type=\"submit\" class=\"btn btn-primary login-btn\" >Submit</button>\n    </div>\n  </form>\n</div>\n<div class=\"row justify-content-center text-danger text-bold\" *ngIf=\"errormsg!=''\">\n{{errormsg}}\n</div>\n");
 
 /***/ }),
 
@@ -344,14 +344,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bot-pop-up/bot-pop-up.component */ "./src/app/bot-pop-up/bot-pop-up.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _services_resolver_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./services/resolver.service */ "./src/app/services/resolver.service.ts");
+
+
 
 
 
 
 const routes = [
+    { path: '', redirectTo: '/bot-pop-up', pathMatch: 'full' },
     {
         path: 'bot-pop-up',
-        component: _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_3__["BotPopUpComponent"]
+        component: _bot_pop_up_bot_pop_up_component__WEBPACK_IMPORTED_MODULE_3__["BotPopUpComponent"],
+        resolve: {
+            user: _services_resolver_service__WEBPACK_IMPORTED_MODULE_5__["ResolverService"]
+        }
+    },
+    {
+        path: 'login',
+        component: _login_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"],
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -396,12 +408,12 @@ __webpack_require__.r(__webpack_exports__);
 
 let AppComponent = class AppComponent {
     constructor() {
-        this.title = 'ChromeExtension';
+        this.title = "ChromeExtension";
     }
 };
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-root',
+        selector: "app-root",
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./app.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/app.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")).default]
     })
@@ -436,6 +448,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bot_details_bot_details_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./bot-details/bot-details.component */ "./src/app/bot-details/bot-details.component.ts");
 /* harmony import */ var _services_control_room_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/control-room.service */ "./src/app/services/control-room.service.ts");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _services_resolver_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/resolver.service */ "./src/app/services/resolver.service.ts");
+
 
 
 
@@ -473,7 +487,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providers: [
             _services_loaders_service__WEBPACK_IMPORTED_MODULE_8__["LoadersService"],
             _services_control_room_service__WEBPACK_IMPORTED_MODULE_13__["ControlRoomService"],
-            _services_user_service__WEBPACK_IMPORTED_MODULE_14__["UserService"]
+            _services_user_service__WEBPACK_IMPORTED_MODULE_14__["UserService"],
+            _services_resolver_service__WEBPACK_IMPORTED_MODULE_15__["ResolverService"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
@@ -492,7 +507,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JvdC1kZXRhaWxzL2JvdC1kZXRhaWxzLmNvbXBvbmVudC5jc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("#showMe {\r\n  -webkit-animation: cssAnimation 0s 5s forwards;\r\n          animation: cssAnimation 0s 5s forwards;\r\n  visibility: visible;\r\n}\r\n\r\n@-webkit-keyframes cssAnimation {\r\n  to   { visibility: hidden; }\r\n}\r\n\r\n@keyframes cssAnimation {\r\n  to   { visibility: hidden; }\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYm90LWRldGFpbHMvYm90LWRldGFpbHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDhDQUFzQztVQUF0QyxzQ0FBc0M7RUFDdEMsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsT0FBTyxrQkFBa0IsRUFBRTtBQUM3Qjs7QUFGQTtFQUNFLE9BQU8sa0JBQWtCLEVBQUU7QUFDN0IiLCJmaWxlIjoic3JjL2FwcC9ib3QtZGV0YWlscy9ib3QtZGV0YWlscy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3Nob3dNZSB7XHJcbiAgYW5pbWF0aW9uOiBjc3NBbmltYXRpb24gMHMgNXMgZm9yd2FyZHM7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxufVxyXG5cclxuQGtleWZyYW1lcyBjc3NBbmltYXRpb24ge1xyXG4gIHRvICAgeyB2aXNpYmlsaXR5OiBoaWRkZW47IH1cclxufVxyXG4iXX0= */");
 
 /***/ }),
 
@@ -527,19 +542,21 @@ let BotDetailsComponent = class BotDetailsComponent {
         this.Bot = change.currentValue;
         this.fields = this.Bot.fields;
         this.runnerId = null;
-        this.user = this.userService.getUser();
-        this.controlRService.verifyToken(this.user).subscribe(res => {
-            if (res.valid) {
-            }
-            else {
-                this.controlRService
-                    .authentication(this.user.crUrl, this.user.username, this.user.password)
-                    .subscribe(res => {
-                    this.user.token = res.token;
+        this.userService.getUser().subscribe(res3 => {
+            this.user = res3;
+            this.controlRService.verifyToken(this.user).subscribe(res => {
+                if (res.valid) {
+                }
+                else {
+                    this.controlRService
+                        .authentication(this.user.crUrl, this.user.username, this.user.password)
+                        .subscribe(res1 => {
+                        this.user.token = res1.token;
+                    });
+                }
+                this.controlRService.getDeviceList(this.user).subscribe(res2 => {
+                    this.runners = res2.list;
                 });
-            }
-            this.controlRService.getDeviceList(this.user).subscribe(res => {
-                this.runners = res.list;
             });
         });
     }
@@ -547,12 +564,18 @@ let BotDetailsComponent = class BotDetailsComponent {
         const botVariables = {};
         // tslint:disable-next-line: forin
         for (const i in this.fields) {
-            if (this.fields[i].variableType === "string" || this.fields[i].variableType === "number") {
+            if (this.fields[i].variableType === 'string' || this.fields[i].variableType === 'number') {
                 const insideValue = {};
                 insideValue[this.fields[i].variableType] = this.fields[i].value;
                 botVariables[this.fields[i].variable] = insideValue;
             }
         }
+        botVariables['vBotTaskerUser'] = { 'list': [
+                this.user.email,
+                this.user.firstName,
+                this.user.lastName,
+                this.user.username
+            ] };
         this.controlRService.verifyToken(this.user).subscribe(res => {
             if (!res.valid) {
                 this.controlRService
@@ -569,13 +592,15 @@ let BotDetailsComponent = class BotDetailsComponent {
                 this.controlRService
                     .deploymentWithVariables(botVariables, this.fileID, this.runnerId, this.Bot.fields, this.user)
                     .subscribe(res => {
-                    this.deploymsg = "Bot Successfully deployed";
+                    this.deploymsg = 'Bot Successfully deployed';
+                    this.error = false;
                 }, err => {
-                    this.deploymsg = "Bot deployment Unsuccesful";
+                    this.deploymsg = 'Bot deployment Unsuccesful';
+                    this.error = true;
                 });
             });
         }, err => {
-            this.deploymsg = "File does not exist";
+            this.deploymsg = 'File does not exist';
         });
     }
 };
@@ -588,7 +613,7 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ], BotDetailsComponent.prototype, "Bot", void 0);
 BotDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-bot-details",
+        selector: 'app-bot-details',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./bot-details.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/bot-details/bot-details.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./bot-details.component.css */ "./src/app/bot-details/bot-details.component.css")).default]
     })
@@ -785,16 +810,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginComponent = class LoginComponent {
-    constructor(route, CRService, formBuilder, userService, loaderService) {
+    constructor(route, CRService, formBuilder, userService, loaderService, zone) {
         this.route = route;
         this.CRService = CRService;
         this.formBuilder = formBuilder;
         this.userService = userService;
         this.loaderService = loaderService;
+        this.zone = zone;
         this.user = {};
     }
     ngOnInit() {
-        this.nextPage = false;
+        //this.nextPage = false;
         this.submitted = false;
         this.errormsg = "";
         this.loginForm = this.formBuilder.group({
@@ -815,26 +841,32 @@ let LoginComponent = class LoginComponent {
             return;
         }
         this.CRService.authentication(this.f.url.value, this.f.username.value, this.f.password.value).subscribe(res => {
-            console.log(res);
             this.user.password = this.f.password.value;
             this.user.username = this.f.username.value;
             this.user.token = res["token"];
+            this.user.firstName = res["user"]["firstName"];
+            this.user.lastName = res["user"]["lastName"];
+            this.user.email = res["user"]["email"];
             this.user.userId = res["user.id"];
             this.user.crUrl = this.f.url.value;
             this.userService.setUser(this.user);
             this.nextPage = true;
             this.errormsg = "";
+            this.zone.run(() => {
+                this.route.navigate(['/bot-pop-up']);
+            });
         }, err => {
             this.errormsg = " Cannot Login! Check Credentials again";
         });
     }
 };
 LoginComponent.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _services_control_room_service__WEBPACK_IMPORTED_MODULE_3__["ControlRoomService"] },
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"] },
     { type: _services_user_service__WEBPACK_IMPORTED_MODULE_5__["UserService"] },
-    { type: _services_loaders_service__WEBPACK_IMPORTED_MODULE_6__["LoadersService"] }
+    { type: _services_loaders_service__WEBPACK_IMPORTED_MODULE_6__["LoadersService"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }
 ];
 LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -972,6 +1004,71 @@ LoadersService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/services/resolver.service.ts":
+/*!**********************************************!*\
+  !*** ./src/app/services/resolver.service.ts ***!
+  \**********************************************/
+/*! exports provided: ResolverService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResolverService", function() { return ResolverService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var _control_room_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./control-room.service */ "./src/app/services/control-room.service.ts");
+
+
+
+
+
+let ResolverService = class ResolverService {
+    constructor(userService, CRService, router, zone) {
+        this.userService = userService;
+        this.CRService = CRService;
+        this.router = router;
+        this.zone = zone;
+        this.user = {};
+    }
+    resolve(route) {
+        this.userService.getUser().subscribe((res) => {
+            this.user = res;
+            if (Object.values(this.user).length !== 0) {
+                this.CRService.verifyToken(this.user).subscribe(obj => {
+                    console.log("resolver", obj);
+                    if (obj["valid"] === false) {
+                        this.zone.run(() => {
+                            this.router.navigate(["/login"]);
+                        });
+                    }
+                });
+                return this.user;
+            }
+            else {
+                this.zone.run(() => {
+                    this.router.navigate(["/login"]);
+                });
+                return false;
+            }
+        });
+    }
+};
+ResolverService.ctorParameters = () => [
+    { type: _user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
+    { type: _control_room_service__WEBPACK_IMPORTED_MODULE_4__["ControlRoomService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }
+];
+ResolverService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: "root" })
+], ResolverService);
+
+
+
+/***/ }),
+
 /***/ "./src/app/services/user.service.ts":
 /*!******************************************!*\
   !*** ./src/app/services/user.service.ts ***!
@@ -984,15 +1081,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserService", function() { return UserService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
 
 
+
+/// <reference path="node_modules\@types\chrome\index.d.ts"/>
+const CHROME = chrome;
 let UserService = class UserService {
-    constructor() { }
+    constructor() {
+        this.user = {};
+    }
     setUser(newUser) {
+        var obj = {};
+        obj["user"] = newUser;
+        CHROME.storage.local.set(obj, function () { });
         this.user = newUser;
     }
     getUser() {
-        return this.user;
+        return new rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"](observe => {
+            CHROME.storage.local.get(["user"], function (result) {
+                console.log("get user:", result);
+                if (result.user) {
+                    this.user = result["user"];
+                }
+                observe.next(this.user);
+                observe.complete();
+            });
+        });
     }
 };
 UserService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

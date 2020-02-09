@@ -27,7 +27,6 @@ export class ControlRoomService {
   }
 
   verifyToken(user: User): Observable<any>{
-
     return this.http.get(user.crUrl+'/v1/authentication/token?token='+ user.token);
   }
 

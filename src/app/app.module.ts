@@ -14,6 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BotDetailsComponent } from './bot-details/bot-details.component';
 import { ControlRoomService } from './services/control-room.service';
 import { UserService } from './services/user.service';
+import { ResolverService } from './services/resolver.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { UserService } from './services/user.service';
   providers: [
     LoadersService,
     ControlRoomService,
-    UserService
+    UserService,
+    ResolverService
 
   ],
   bootstrap: [AppComponent]

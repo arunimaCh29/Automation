@@ -1,4 +1,4 @@
-<div *ngIf="!nextPage" id="login_section">
+<div  id="login_section">
   <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
     <div class="form-group row">
       <label>Control Room URL</label>
@@ -25,7 +25,4 @@
 </div>
 <div class="row justify-content-center text-danger text-bold" *ngIf="errormsg!=''">
 {{errormsg}}
-</div>
-<div *ngIf="nextPage">
-  <app-bot-pop-up></app-bot-pop-up>
 </div>

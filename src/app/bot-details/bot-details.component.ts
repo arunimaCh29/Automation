@@ -5,17 +5,17 @@ import {
   SimpleChanges,
   OnChanges,
   SimpleChange
-} from "@angular/core";
-import { BotConfiguration } from "../models/botConfiguration";
-import { Field } from "../models/field";
-import { ControlRoomService } from "../services/control-room.service";
-import { User } from "../models/User";
-import { UserService } from "../services/user.service";
+} from '@angular/core';
+import { BotConfiguration } from '../models/botConfiguration';
+import { Field } from '../models/field';
+import { ControlRoomService } from '../services/control-room.service';
+import { User } from '../models/User';
+import { UserService } from '../services/user.service';
 
 @Component({
-  selector: "app-bot-details",
-  templateUrl: "./bot-details.component.html",
-  styleUrls: ["./bot-details.component.css"]
+  selector: 'app-bot-details',
+  templateUrl: './bot-details.component.html',
+  styleUrls: ['./bot-details.component.css']
 })
 export class BotDetailsComponent implements OnInit, OnChanges {
   @Input()
@@ -23,6 +23,8 @@ export class BotDetailsComponent implements OnInit, OnChanges {
   fields: Field[];
   user: User;
   deploymsg: string;
+  error: boolean;
+  show: boolean;
   runners: [];
   fileID;
   runnerId;
@@ -40,25 +42,28 @@ export class BotDetailsComponent implements OnInit, OnChanges {
     this.Bot = change.currentValue;
     this.fields = this.Bot.fields;
     this.runnerId = null;
-    this.user = this.userService.getUser();
-    this.controlRService.verifyToken(this.user).subscribe(res => {
-      if (res.valid) {
-      } else {
-        this.controlRService
-          .authentication(
-            this.user.crUrl,
-            this.user.username,
-            this.user.password
-          )
-          .subscribe(res => {
-            this.user.token = res.token;
-          });
-      }
+    this.userService.getUser().subscribe(res3 => {
+      this.user = res3;
+      this.controlRService.verifyToken(this.user).subscribe(res => {
+        if (res.valid) {
+        } else {
+          this.controlRService
+            .authentication(
+              this.user.crUrl,
+              this.user.username,
+              this.user.password
+            )
+            .subscribe(res1 => {
+              this.user.token = res1.token;
+            });
+        }
 
-      this.controlRService.getDeviceList(this.user).subscribe(res => {
-        this.runners = res.list;
+        this.controlRService.getDeviceList(this.user).subscribe(res2 => {
+          this.runners = res2.list;
+        });
       });
     });
+
   }
 
   onDeploy() {
@@ -66,14 +71,19 @@ export class BotDetailsComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line: forin
     for (const i in this.fields) {
-      if (this.fields[i].variableType === "string" || this.fields[i].variableType === "number") {
+      if (this.fields[i].variableType === 'string' || this.fields[i].variableType === 'number') {
         const insideValue: { [k: string]: any } = {};
         insideValue[this.fields[i].variableType] = this.fields[i].value;
 
         botVariables[this.fields[i].variable] = insideValue;
       }
     }
-
+    botVariables['vBotTaskerUser'] = { 'list': [
+      this.user.email,
+      this.user.firstName,
+      this.user.lastName,
+      this.user.username
+    ]};
     this.controlRService.verifyToken(this.user).subscribe(
       res => {
         if (!res.valid) {
@@ -103,17 +113,23 @@ export class BotDetailsComponent implements OnInit, OnChanges {
               )
               .subscribe(
                 res => {
-                  this.deploymsg = "Bot Successfully deployed";
+
+                  this.deploymsg = 'Bot Successfully deployed';
+                  this.error = false;
                 },
                 err => {
-                  this.deploymsg = "Bot deployment Unsuccesful";
+
+                  this.deploymsg = 'Bot deployment Unsuccesful';
+                  this.error = true;
                 }
               );
           });
       },
       err => {
-        this.deploymsg = "File does not exist";
+        this.deploymsg = 'File does not exist';
       }
     );
   }
+
+
 }
