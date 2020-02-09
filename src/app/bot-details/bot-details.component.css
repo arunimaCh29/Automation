@@ -1,8 +1,0 @@
-#showMe {
-  animation: cssAnimation 0s 5s forwards;
-  visibility: visible;
-}
-
-@keyframes cssAnimation {
-  to   { visibility: hidden; }
-}

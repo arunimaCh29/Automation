@@ -45,7 +45,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div *ngFor=\"let item of fields\">\n  <div class=\"form-group\">\n    <label for=\"\">{{item.title}}</label>\n    <input class=\"form-control m-1\" type=\"{{item.restrictions.digitsOnly ? 'number' : 'text'}}\" *ngIf=\"item.type== 'input'\" [(ngModel)]=\"item.value\"\n      required=\"{{item.restrictions.required}}\"  >\n    <select class=\"form-control \"  *ngIf=\"item.type=='dropdown'\"  id=\"botSelector\" [(ngModel)]=\"item.value\" required=\"{{item.restrictions.required}}\">\n      <option [value]='null' selected disabled>Select a option</option>\n      <option *ngFor=\"let val of item.options\" [value]=\"val\"> {{val}}</option>\n    </select>\n  </div>\n</div>\n\n  <div class=\"form-group \">\n    <label for=\"\">Select a Bot Runner</label>\n    <select class=\"form-control \"  id=\"runnerSelector\" [(ngModel)]=\"runnerId\" required=\"true\">\n      <option [value]='null' selected disabled>Select Bot Runner</option>\n      <option *ngFor=\"let val of runners\" [value]=\"val.id\"> {{val.hostName}}</option>\n    </select>\n  </div>\n\n<div class=\"form-group \">\n  <div class=\"row justify-content-center m-1\">\n    <button type=\"submit\" class=\"btn btn-primary \" (click)=\"onDeploy()\"  >Deploy</button>\n  </div>\n</div>\n\n<div id=\"showMe\" class=\"row justify-content-center m-1 mt-2 alert \"  [ngClass]=\"error? 'alert-danger': 'alert-info' \" *ngIf=\"deploymsg\">{{deploymsg}}</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div *ngFor=\"let item of fields\">\n  <div class=\"form-group\">\n    <label for=\"\">{{item.title}}</label>\n    <input class=\"form-control m-1\" type=\"{{item.restrictions.digitsOnly ? 'number' : 'text'}}\" *ngIf=\"item.type== 'input'\" [(ngModel)]=\"item.value\"\n      required=\"{{item.restrictions.required}}\"  >\n    <select class=\"form-control \"  *ngIf=\"item.type=='dropdown'\"  id=\"botSelector\" [(ngModel)]=\"item.value\" required=\"{{item.restrictions.required}}\">\n      <option [value]='null' selected disabled>Select a option</option>\n      <option *ngFor=\"let val of item.options\" [value]=\"val\"> {{val}}</option>\n    </select>\n  </div>\n</div>\n\n  <div class=\"form-group \">\n    <label for=\"\">Select a Bot Runner</label>\n    <select class=\"form-control \"  id=\"runnerSelector\" [(ngModel)]=\"runnerId\" required=\"true\">\n      <option [value]='null' selected disabled>Select Bot Runner</option>\n      <option *ngFor=\"let val of runners\" [value]=\"val.id\"> {{val.hostName}}</option>\n    </select>\n  </div>\n\n<div class=\"form-group \">\n  <div class=\"row justify-content-center m-1\">\n    <button type=\"submit\" class=\"btn btn-primary \" (click)=\"onDeploy()\"  >Deploy</button>\n  </div>\n</div>\n\n<div  class=\"row justify-content-center m-1 mt-2 alert \"  [ngClass]=\"error? 'alert-danger': 'alert-info' \" *ngIf=\"show\">{{deploymsg}}</div>\n\n");
 
 /***/ }),
 
@@ -507,7 +507,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("#showMe {\r\n  -webkit-animation: cssAnimation 0s 5s forwards;\r\n          animation: cssAnimation 0s 5s forwards;\r\n  visibility: visible;\r\n}\r\n\r\n@-webkit-keyframes cssAnimation {\r\n  to   { visibility: hidden; }\r\n}\r\n\r\n@keyframes cssAnimation {\r\n  to   { visibility: hidden; }\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYm90LWRldGFpbHMvYm90LWRldGFpbHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDhDQUFzQztVQUF0QyxzQ0FBc0M7RUFDdEMsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0UsT0FBTyxrQkFBa0IsRUFBRTtBQUM3Qjs7QUFGQTtFQUNFLE9BQU8sa0JBQWtCLEVBQUU7QUFDN0IiLCJmaWxlIjoic3JjL2FwcC9ib3QtZGV0YWlscy9ib3QtZGV0YWlscy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiI3Nob3dNZSB7XHJcbiAgYW5pbWF0aW9uOiBjc3NBbmltYXRpb24gMHMgNXMgZm9yd2FyZHM7XHJcbiAgdmlzaWJpbGl0eTogdmlzaWJsZTtcclxufVxyXG5cclxuQGtleWZyYW1lcyBjc3NBbmltYXRpb24ge1xyXG4gIHRvICAgeyB2aXNpYmlsaXR5OiBoaWRkZW47IH1cclxufVxyXG4iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2JvdC1kZXRhaWxzL2JvdC1kZXRhaWxzLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -525,6 +525,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_control_room_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/control-room.service */ "./src/app/services/control-room.service.ts");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+
 
 
 
@@ -592,15 +594,26 @@ let BotDetailsComponent = class BotDetailsComponent {
                 this.controlRService
                     .deploymentWithVariables(botVariables, this.fileID, this.runnerId, this.Bot.fields, this.user)
                     .subscribe(res => {
+                    this.setTime();
                     this.deploymsg = 'Bot Successfully deployed';
                     this.error = false;
                 }, err => {
+                    this.setTime();
                     this.deploymsg = 'Bot deployment Unsuccesful';
                     this.error = true;
                 });
             });
         }, err => {
-            this.deploymsg = 'File does not exist';
+            this.setTime();
+            this.deploymsg = 'File does not exist Or Permission denied to the file';
+        });
+    }
+    setTime() {
+        this.show = true;
+        let time;
+        time = Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["timer"])(5000);
+        time.subscribe(() => {
+            this.show = false;
         });
     }
 };

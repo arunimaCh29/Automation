@@ -1,96 +1,156 @@
 {
-  "CRUrls":[ "http://ec2-34-214-73-52.us-west-2.compute.amazonaws.com", "https://ec2-34-214-73-52.us-west-2.compute.amazonaws.com/"],
-  "bots":[{
-  	"name":"ebay Auction Sniper Bot",
-  	"path":"Automation Anywhere\\My Tasks\\APITest.atmx",
-  	"fields":[
-  	{
-  		"title":"Auction URL",
-      "type":"input",
-      "variable":"vValueFromAPI5",
-      "variableType": "string",
-      "value":"",
-  		"restrictions":
-  		{
-  			"required":true,
-  			"digitsOnly":false
-  		}
-  	},
-  	{
-  		"title":"Max Bid",
-      "type":"input",
-      "variable":"vValueFromAPI4",
-      "variableType": "string",
-      "value":"",
-  		"restrictions":
-  		{
-  			"required":true,
-  			"digitsOnly":true
-  		}
-  	}
-
-  	]
-  } ,
-{
-  	"name":"Amazon Bid",
-    "path":"Automation Anywhere\\My Tasks\\APITest.atmx",
-  	"fields":[
-  	{
-  		"title":"Auction URL",
-      "type":"input",
-      "variable":"vValueFromAPI3",
-      "variableType": "string",
-      "value":"",
-  		"restrictions":
-  		{
-  			"required":true,
-  			"digitsOnly":false
-  		}
-  	},
-{
-  		"title":"Want to purchase",
-      "type":"dropdown",
-      "variable":"vValueFromAPI2",
-      "variableType": "string",
-      "options":["yes","no","maybe"],
-      "value":"",
-  		"restrictions":
-  		{
-        "required":true,
-        "digitsOnly":false
-  		}
-  	},
-  	{
-  		"title":"Max Bid",
-      "type":"input",
-      "variable":"vValueFromAPI1",
-      "variableType": "string",
-      "value":"",
-  		"restrictions":
-  		{
-  			"required":true,
-  			"digitsOnly":true
-  		}
-  	}
-
-  	]
-  },
-   {
-    "name":"APITest",
-    "path":"Automation Anywhere\\My Tasks\\APITest.atmx",
-    "fields":[{
-      "title":"Message Box Value",
-      "variable":"vValueFromAPI",
-      "variableType": "string",
-      "type":"input",
-      "value":"",
-  		"restrictions":
-  		{
-  			"required":true,
-  			"digitsOnly":false
-  		}
-  	}]
-  }
-
-]
+	"CRUrls":[ "http://ec2-34-214-73-52.us-west-2.compute.amazonaws.com", "https://ec2-34-214-73-52.us-west-2.compute.amazonaws.com"],
+	"bots": [
+		{
+			"name": "Car Buyer Bot",
+			"path": "Automation Anywhere\\My Tasks\\BotAPI\\MasterBot.atmx",
+			"fields": [
+				{
+					"title": "Vehicle Make",
+					"type": "input",
+					"variable": "vVehicleMake",
+					"variableType": "string",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "Vehicle Model",
+					"type": "input",
+					"variable": "vVehicleModel",
+					"variableType": "string",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "Zip Code",
+					"type": "input",
+					"variable": "vSearchZip",
+					"variableType": "string",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": true
+					}
+				},
+				{
+					"title": "Search Radius",
+					"type": "dropdown",
+					"variable": "vSearchRadius",
+					"variableType": "string",
+					"options": [
+						"50 mi",
+						"75 mi",
+						"100 mi",
+						"200 mi",
+						"500 mi"
+					],
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "Expected Life of Vehicle",
+					"type": "input",
+					"variable": "vExpectedLifeOfCar",
+					"variableType": "string",
+					"value": "150000",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": true
+					}
+				}
+			]
+		},
+		{
+			"name": "Ebay Auction Sniper",
+			"path": "Automation Anywhere\\My Tasks\\APITest.atmx",
+			"fields": [
+				{
+					"title": "Auction URL",
+					"type": "input",
+					"variable": "vValueFromAPI3",
+					"variableType": "string",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "Want to purchase",
+					"type": "dropdown",
+					"variable": "vValueFromAPI2",
+					"variableType": "string",
+					"options": [
+						"yes",
+						"no",
+						"maybe"
+					],
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "Max Bid",
+					"type": "input",
+					"variable": "vValueFromAPI1",
+					"variableType": "string",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": true
+					}
+				}
+			]
+		},
+		{
+			"name": "APITest",
+			"path": "Automation Anywhere\\My Tasks\\APITest.atmx",
+			"fields": [
+				{
+					"title": "Message Box Value",
+					"variable": "vValueFromAPI",
+					"variableType": "string",
+					"type": "input",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "InputField 2",
+					"variable": "vInputField2",
+					"variableType": "string",
+					"type": "input",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				},
+				{
+					"title": "InputField 3",
+					"variable": "vInputField3",
+					"variableType": "string",
+					"type": "input",
+					"value": "",
+					"restrictions": {
+						"required": true,
+						"digitsOnly": false
+					}
+				}
+			]
+		}
+	]
 }

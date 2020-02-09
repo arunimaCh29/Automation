@@ -11,6 +11,7 @@ import { Field } from '../models/field';
 import { ControlRoomService } from '../services/control-room.service';
 import { User } from '../models/User';
 import { UserService } from '../services/user.service';
+import { Observable, timer } from 'rxjs';
 
 @Component({
   selector: 'app-bot-details',
@@ -113,12 +114,12 @@ export class BotDetailsComponent implements OnInit, OnChanges {
               )
               .subscribe(
                 res => {
-
+this.setTime()
                   this.deploymsg = 'Bot Successfully deployed';
                   this.error = false;
                 },
                 err => {
-
+                  this.setTime()
                   this.deploymsg = 'Bot deployment Unsuccesful';
                   this.error = true;
                 }
@@ -126,10 +127,19 @@ export class BotDetailsComponent implements OnInit, OnChanges {
           });
       },
       err => {
-        this.deploymsg = 'File does not exist';
+        this.setTime();
+        this.deploymsg = 'File does not exist Or Permission denied to the file';
       }
     );
   }
 
+  setTime() {
+    this.show=true;
+    let time : Observable<any>;
+    time = timer(5000);
+    time.subscribe(() => {
+      this.show =false;
+    })
+  }
 
 }
