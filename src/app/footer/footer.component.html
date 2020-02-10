@@ -1,24 +1,8 @@
-<div class="modal-icons">
-  <div class="flex-container">
-    <div class="flex">
-      <a href="https://www.youtube.com/channel/UCZP7bD2cUzaBp_bEgHidoPw" title="Automation Anywhere on YouTube"
-        target="_blank"><i class="fa fa-youtube"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://twitter.com/AutomationAnywh" title="Automation Anywhere on Twitter" target="_blank"><i
-          class="fa fa-twitter"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://www.facebook.com/AutomationAnywhereSoftware/" title="Automation Anywhere on Facebook"
-        target="_blank"><i class="fa fa-facebook"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://www.instagram.com/automation_anywhere" title="Automation Anywhere on Instagram"
-        target="_blank"><i class="fa fa-instagram"></i></a>
-    </div>
-    <div class="flex">
-      <a href="https://university.automationanywhere.com/" title="Automation Anywhere University" target="_blank"><i
-          class="fa fa-university"></i></a>
-    </div>
+<div class="container ">
+  <div  class="row fixed-bottom navbar-light bar text-center" >
+    <div class="col-sm-4  icons" [routerLink]="['/bot-pop-up']" (click) ="activated(0)" [ngClass]="active[0]? 'select-icon':''" > <fa-icon [icon]="fasignIn"></fa-icon></div>
+    <div class="col-sm-4 icons " [routerLink]="['/history']" (click) ="activated(1)" [ngClass]="active[1]? 'select-icon':''" ><fa-icon [icon]="history"></fa-icon></div>
+    <div class="col-sm-4 icons" [routerLink]="['/logout']" (click) ="activated(2)" [ngClass]="active[2]? 'select-icon':''" ><fa-icon [icon]="fasignOut"></fa-icon></div>
   </div>
 </div>
+

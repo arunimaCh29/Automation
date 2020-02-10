@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { BotPopUpComponent } from './bot-pop-up/bot-pop-up.component';
 import { LoginComponent } from './login/login.component';
 import { ResolverService } from './services/resolver.service';
+import { HistoryComponent } from './history/history.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,16 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
 
   }
 ];

@@ -5,18 +5,18 @@ import {
   SimpleChanges,
   OnChanges,
   SimpleChange
-} from '@angular/core';
-import { BotConfiguration } from '../models/botConfiguration';
-import { Field } from '../models/field';
-import { ControlRoomService } from '../services/control-room.service';
-import { User } from '../models/User';
-import { UserService } from '../services/user.service';
-import { Observable, timer } from 'rxjs';
+} from "@angular/core";
+import { BotConfiguration } from "../models/botConfiguration";
+import { Field } from "../models/field";
+import { ControlRoomService } from "../services/control-room.service";
+import { User } from "../models/User";
+import { UserService } from "../services/user.service";
+import { Observable, timer } from "rxjs";
 
 @Component({
-  selector: 'app-bot-details',
-  templateUrl: './bot-details.component.html',
-  styleUrls: ['./bot-details.component.css']
+  selector: "app-bot-details",
+  templateUrl: "./bot-details.component.html",
+  styleUrls: ["./bot-details.component.css"]
 })
 export class BotDetailsComponent implements OnInit, OnChanges {
   @Input()
@@ -64,7 +64,6 @@ export class BotDetailsComponent implements OnInit, OnChanges {
         });
       });
     });
-
   }
 
   onDeploy() {
@@ -72,19 +71,24 @@ export class BotDetailsComponent implements OnInit, OnChanges {
 
     // tslint:disable-next-line: forin
     for (const i in this.fields) {
-      if (this.fields[i].variableType === 'string' || this.fields[i].variableType === 'number') {
+      if (
+        this.fields[i].variableType === "string" ||
+        this.fields[i].variableType === "number"
+      ) {
         const insideValue: { [k: string]: any } = {};
         insideValue[this.fields[i].variableType] = this.fields[i].value;
 
         botVariables[this.fields[i].variable] = insideValue;
       }
     }
-    botVariables['vBotTaskerUser'] = { 'list': [
-      this.user.email,
-      this.user.firstName,
-      this.user.lastName,
-      this.user.username
-    ]};
+    botVariables["vBotTaskerUser"] = {
+      list: [
+        this.user.email,
+        this.user.firstName,
+        this.user.lastName,
+        this.user.username
+      ]
+    };
     this.controlRService.verifyToken(this.user).subscribe(
       res => {
         if (!res.valid) {
@@ -103,7 +107,16 @@ export class BotDetailsComponent implements OnInit, OnChanges {
         this.controlRService
           .getFileID(this.user, this.Bot.path)
           .subscribe(res => {
-            this.fileID = res.list[0].id;
+            if (res.list.length !== 0) {
+              this.fileID = res.list[0].id;
+            } else {
+              this.setTime();
+              this.error = true;
+              this.deploymsg =
+                "File does not exist Or Permission denied to the file";
+                return;
+            }
+
             this.controlRService
               .deploymentWithVariables(
                 botVariables,
@@ -114,13 +127,13 @@ export class BotDetailsComponent implements OnInit, OnChanges {
               )
               .subscribe(
                 res => {
-this.setTime()
-                  this.deploymsg = 'Bot Successfully deployed';
+                  this.setTime();
+                  this.deploymsg = "Bot Successfully deployed";
                   this.error = false;
                 },
                 err => {
-                  this.setTime()
-                  this.deploymsg = 'Bot deployment Unsuccesful';
+                  this.setTime();
+                  this.deploymsg = "Bot deployment Unsuccesful";
                   this.error = true;
                 }
               );
@@ -128,18 +141,17 @@ this.setTime()
       },
       err => {
         this.setTime();
-        this.deploymsg = 'File does not exist Or Permission denied to the file';
+        this.deploymsg = "File does not exist Or Permission denied to the file";
       }
     );
   }
 
   setTime() {
-    this.show=true;
-    let time : Observable<any>;
+    this.show = true;
+    let time: Observable<any>;
     time = timer(5000);
     time.subscribe(() => {
-      this.show =false;
-    })
+      this.show = false;
+    });
   }
-
 }

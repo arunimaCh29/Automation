@@ -1,0 +1,14 @@
+.bar {
+  position: relative;
+  background-color: #f28a28;
+  flex-wrap: nowrap!important;
+  font-size: x-large;
+}
+.icons  :hover {
+ color: rgba(57, 60, 63, 0.534);
+}
+
+.select-icon {
+  background-color: whitesmoke;
+  color: #f0722b;
+}
