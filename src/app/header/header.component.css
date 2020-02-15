@@ -1,0 +1,14 @@
+.back-color {
+  background-color: #f28a28;
+}
+.icons  :hover {
+  color: rgba(57, 60, 63, 0.534);
+ }
+
+ .icons {
+   color: ivory;
+ }
+
+ .logout {
+  justify-content: space-around
+ }

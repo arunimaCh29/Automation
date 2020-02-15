@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  fasignOut = faSignOutAlt;
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
-
+  getRouteForbutton() {
+return this.route.firstChild.routeConfig.path;
+  }
 }

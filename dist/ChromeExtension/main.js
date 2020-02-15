@@ -71,7 +71,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container \">\n  <div  class=\"row fixed-bottom navbar-light bar text-center\" >\n    <div class=\"col-sm-4  icons\" [routerLink]=\"['/bot-pop-up']\" (click) =\"activated(0)\" [ngClass]=\"active[0]? 'select-icon':''\" > <fa-icon [icon]=\"fasignIn\"></fa-icon></div>\n    <div class=\"col-sm-4 icons \" [routerLink]=\"['/history']\" (click) =\"activated(1)\" [ngClass]=\"active[1]? 'select-icon':''\" ><fa-icon [icon]=\"history\"></fa-icon></div>\n    <div class=\"col-sm-4 icons\" [routerLink]=\"['/logout']\" (click) =\"activated(2)\" [ngClass]=\"active[2]? 'select-icon':''\" ><fa-icon [icon]=\"fasignOut\"></fa-icon></div>\n  </div>\n</div>\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container \">\n  <div class=\"row fixed-bottom navbar-light bar text-center\">\n    <div class=\"col-sm-4  icons\" [routerLink]=\"['/bot-pop-up']\" (click)=\"activated(0)\"\n      [ngClass]=\"active[0]? 'select-icon':''\">\n      <fa-icon *ngIf=\"getRouteForbutton()=== 'bot-pop-up' || correctRoute === '/bot-pop-up'\" [icon]=\"farobot\"></fa-icon>\n      <fa-icon *ngIf=\"getRouteForbutton()=== 'login' || correctRoute === '/login'\" [icon]=\"fasignIn\"></fa-icon>\n    </div>\n\n    <div class=\"col-sm-4 icons \" [routerLink]=\"['/history']\" (click)=\"activated(1)\"\n      [ngClass]=\"active[1]? 'select-icon':''\">\n      <fa-icon [icon]=\"history\"></fa-icon>\n    </div>\n  </div>\n</div>\n");
 
 /***/ }),
 
@@ -84,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"modal-header\">\n  <h1 class=\"logo\">\n    <img src=\"/assets/images/icon.png\" alt=\"Bot Tasker\" class=\"logo-icon\"><span class=\"title\">Bot Tasker</span>\n    <span class=\"version\">(0.0.1)</span>\n  </h1>\n</div>\n<div class=\"content\">\n  <p>Easily send work for your bots</p>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container back-color\">\n  <div class=\"row text-center justify-content-center mx-2 mb-2\">\n    <img src=\"/assets/images/icon.png\" alt=\"Bot Tasker\" class=\"m-1\"><h3 class=\"m-1\">Bot Tasker</h3>\n    <span class=\"form-label\">(0.0.1)</span>\n  </div>\n  <div class=\"row text-center logout\">\n      <h5>Easily send work for your bots</h5>\n      <div class=\" icons text-right\" [routerLink]=\"['/logout']\" title=\"Logout\"><fa-icon [icon]=\"fasignOut\"></fa-icon></div>\n </div>\n</div>\n");
 
 /***/ }),
 
@@ -783,29 +783,52 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+
 
 
 
 
 let FooterComponent = class FooterComponent {
-    constructor(route) {
+    constructor(route, router) {
         this.route = route;
+        this.router = router;
         this.fasignIn = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSignInAlt"];
-        this.fasignOut = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSignOutAlt"];
+        this.farobot = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faRobot"];
         this.history = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faHistory"];
         this.active = [];
     }
     ngOnInit() {
         this.active.fill(false, 0, 3);
         this.active[0] = true;
+        this.getPrevRoute();
     }
     activated(i) {
         this.active.fill(false, 0, 3);
         this.active[i] = true;
     }
+    getPrevRoute() {
+        this.router.events
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["filter"])((e) => e instanceof _angular_router__WEBPACK_IMPORTED_MODULE_3__["RoutesRecognized"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["pairwise"])()).subscribe((e) => {
+            if (e[1].urlAfterRedirects != '/logout' && e[1].urlAfterRedirects != '/history') {
+                this.correctRoute = e[1].urlAfterRedirects;
+            }
+            if (e[1].urlAfterRedirects == '/logout') {
+                this.correctRoute = '/login';
+            }
+        });
+    }
+    getRoute() {
+        return this.route;
+    }
+    getRouteForbutton() {
+        console.log(this.route);
+        return this.route.firstChild.routeConfig.path;
+    }
 };
 FooterComponent.ctorParameters = () => [
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 FooterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -828,7 +851,7 @@ FooterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = (".back-color {\r\n  background-color: #f28a28;\r\n}\r\n.icons  :hover {\r\n  color: rgba(57, 60, 63, 0.534);\r\n }\r\n.icons {\r\n   color: ivory;\r\n }\r\n.logout {\r\n  justify-content: space-around\r\n }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaGVhZGVyL2hlYWRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UseUJBQXlCO0FBQzNCO0FBQ0E7RUFDRSw4QkFBOEI7Q0FDL0I7QUFFQTtHQUNFLFlBQVk7Q0FDZDtBQUVBO0VBQ0M7Q0FDRCIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci9oZWFkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5iYWNrLWNvbG9yIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjI4YTI4O1xyXG59XHJcbi5pY29ucyAgOmhvdmVyIHtcclxuICBjb2xvcjogcmdiYSg1NywgNjAsIDYzLCAwLjUzNCk7XHJcbiB9XHJcblxyXG4gLmljb25zIHtcclxuICAgY29sb3I6IGl2b3J5O1xyXG4gfVxyXG5cclxuIC5sb2dvdXQge1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYXJvdW5kXHJcbiB9XHJcbiJdfQ== */");
 
 /***/ }),
 
@@ -844,13 +867,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
 
 
 let HeaderComponent = class HeaderComponent {
-    constructor() { }
+    constructor(route) {
+        this.route = route;
+        this.fasignOut = _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faSignOutAlt"];
+    }
     ngOnInit() {
     }
+    getRouteForbutton() {
+        return this.route.firstChild.routeConfig.path;
+    }
 };
+HeaderComponent.ctorParameters = () => [
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"] }
+];
 HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-header',
