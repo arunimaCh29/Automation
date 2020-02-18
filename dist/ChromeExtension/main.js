@@ -967,12 +967,9 @@ let HistoryComponent = class HistoryComponent {
         });
         this.userHistory.subscribeUserHistory().subscribe(res => {
             this.loadedHistory = res;
-            console.log("varSubscribe;", this.loadedHistory);
-            this.changeDetection.detectChanges();
         });
         this.userHistory.getUserHistory(this.loadedUser.username).subscribe(res => {
             this.loadedHistory = res;
-            console.log("getfunction;", this.loadedHistory);
             this.changeDetection.detectChanges();
         });
     }
