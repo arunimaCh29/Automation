@@ -1,1 +1,20 @@
-<p>history works!</p>
+<div class="table-responsive" *ngIf="loadedUser.username  && (loadedHistory.length !=0)">
+  <table class="table table-hover table-borderless table-sm text-center">
+    <thead class="thead-light">
+      <tr >
+        <th scope="col">Date</th>
+        <th scope="col">Bot</th>
+        <th scope="col">Submission status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let item of loadedHistory">
+        <td>{{item.date }}</td>
+        <td>{{item.botName}}</td>
+        <td>{{item.status}}</td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+<h5 class="text-center m-3" *ngIf="loadedUser.username && loadedHistory.length === 0">Looks like you have not ran a bot yet!</h5>
+<h5 class="text-center m-3" *ngIf="!loadedUser.username">Login to view History</h5>

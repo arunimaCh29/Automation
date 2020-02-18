@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>history works!</p>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"table-responsive\" *ngIf=\"loadedUser.username  && (loadedHistory.length !=0)\">\n  <table class=\"table table-hover table-borderless table-sm text-center\">\n    <thead class=\"thead-light\">\n      <tr >\n        <th scope=\"col\">Date</th>\n        <th scope=\"col\">Bot</th>\n        <th scope=\"col\">Submission status</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr  *ngFor=\"let item of loadedHistory\">\n        <td>{{item.date }}</td>\n        <td>{{item.botName}}</td>\n        <td>{{item.status}}</td>\n      </tr>\n      </tbody>\n  </table>\n</div>\n<h5 class=\"text-center m-3\" *ngIf=\"loadedUser.username && loadedHistory.length === 0\">Looks like you have not ran a bot yet!</h5>\n<h5 class=\"text-center m-3\" *ngIf=\"!loadedUser.username\">Login to view History</h5>\n");
 
 /***/ }),
 
@@ -490,6 +490,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_resolver_service__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./services/resolver.service */ "./src/app/services/resolver.service.ts");
 /* harmony import */ var _history_history_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./history/history.component */ "./src/app/history/history.component.ts");
 /* harmony import */ var _logout_logout_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./logout/logout.component */ "./src/app/logout/logout.component.ts");
+/* harmony import */ var _services_user_history_service__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./services/user-history.service */ "./src/app/services/user-history.service.ts");
+
 
 
 
@@ -535,7 +537,8 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _services_loaders_service__WEBPACK_IMPORTED_MODULE_9__["LoadersService"],
             _services_control_room_service__WEBPACK_IMPORTED_MODULE_14__["ControlRoomService"],
             _services_user_service__WEBPACK_IMPORTED_MODULE_15__["UserService"],
-            _services_resolver_service__WEBPACK_IMPORTED_MODULE_16__["ResolverService"]
+            _services_resolver_service__WEBPACK_IMPORTED_MODULE_16__["ResolverService"],
+            _services_user_history_service__WEBPACK_IMPORTED_MODULE_19__["UserHistoryService"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
     })
@@ -573,15 +576,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_control_room_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/control-room.service */ "./src/app/services/control-room.service.ts");
 /* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+/* harmony import */ var _services_user_history_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/user-history.service */ "./src/app/services/user-history.service.ts");
+
 
 
 
 
 
 let BotDetailsComponent = class BotDetailsComponent {
-    constructor(controlRService, userService) {
+    constructor(controlRService, userService, userHistory) {
         this.controlRService = controlRService;
         this.userService = userService;
+        this.userHistory = userHistory;
     }
     ngOnInit() {
         this.fields = this.Bot.fields;
@@ -613,14 +619,14 @@ let BotDetailsComponent = class BotDetailsComponent {
         const botVariables = {};
         // tslint:disable-next-line: forin
         for (const i in this.fields) {
-            if (this.fields[i].variableType === "string" ||
-                this.fields[i].variableType === "number") {
+            if (this.fields[i].variableType === 'string' ||
+                this.fields[i].variableType === 'number') {
                 const insideValue = {};
                 insideValue[this.fields[i].variableType] = this.fields[i].value;
                 botVariables[this.fields[i].variable] = insideValue;
             }
         }
-        botVariables["vBotTaskerUser"] = {
+        botVariables['vBotTaskerUser'] = {
             list: [
                 this.user.email,
                 this.user.firstName,
@@ -647,24 +653,44 @@ let BotDetailsComponent = class BotDetailsComponent {
                     this.setTime();
                     this.error = true;
                     this.deploymsg =
-                        "File does not exist Or Permission denied to the file";
+                        'File does not exist Or Permission denied to the file';
+                    let botRunHistory = {};
+                    botRunHistory.botName = this.Bot.name;
+                    botRunHistory.date = (new Date()).toDateString();
+                    botRunHistory.status = 'Failure';
+                    this.userHistory.setUserHistory(botRunHistory, this.user.username);
                     return;
                 }
                 this.controlRService
                     .deploymentWithVariables(botVariables, this.fileID, this.runnerId, this.Bot.fields, this.user)
                     .subscribe(res => {
                     this.setTime();
-                    this.deploymsg = "Bot Successfully deployed";
+                    this.deploymsg = 'Bot Successfully deployed';
                     this.error = false;
+                    const botRunHistory = {};
+                    botRunHistory.botName = this.Bot.name;
+                    botRunHistory.date = (new Date()).toDateString();
+                    botRunHistory.status = 'success';
+                    this.userHistory.setUserHistory(botRunHistory, this.user.username);
                 }, err => {
                     this.setTime();
-                    this.deploymsg = "Bot deployment Unsuccesful";
+                    this.deploymsg = 'Bot deployment Unsuccesful';
                     this.error = true;
+                    const botRunHistory = {};
+                    botRunHistory.botName = this.Bot.name;
+                    botRunHistory.date = (new Date()).toDateString();
+                    botRunHistory.status = 'Failure';
+                    this.userHistory.setUserHistory(botRunHistory, this.user.username);
                 });
             });
         }, err => {
             this.setTime();
-            this.deploymsg = "File does not exist Or Permission denied to the file";
+            this.deploymsg = 'File does not exist Or Permission denied to the file';
+            const botRunHistory = {};
+            botRunHistory.botName = this.Bot.name;
+            botRunHistory.date = (new Date()).toDateString();
+            botRunHistory.status = 'Failure';
+            this.userHistory.setUserHistory(botRunHistory, this.user.username);
         });
     }
     setTime() {
@@ -678,14 +704,15 @@ let BotDetailsComponent = class BotDetailsComponent {
 };
 BotDetailsComponent.ctorParameters = () => [
     { type: _services_control_room_service__WEBPACK_IMPORTED_MODULE_2__["ControlRoomService"] },
-    { type: _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] }
+    { type: _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
+    { type: _services_user_history_service__WEBPACK_IMPORTED_MODULE_5__["UserHistoryService"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])()
 ], BotDetailsComponent.prototype, "Bot", void 0);
 BotDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-bot-details",
+        selector: 'app-bot-details',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./bot-details.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/bot-details/bot-details.component.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./bot-details.component.css */ "./src/app/bot-details/bot-details.component.css")).default]
     })
@@ -818,11 +845,7 @@ let FooterComponent = class FooterComponent {
             }
         });
     }
-    getRoute() {
-        return this.route;
-    }
     getRouteForbutton() {
-        console.log(this.route);
         return this.route.firstChild.routeConfig.path;
     }
 };
@@ -924,13 +947,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HistoryComponent", function() { return HistoryComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _services_user_history_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/user-history.service */ "./src/app/services/user-history.service.ts");
+/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/user.service */ "./src/app/services/user.service.ts");
+
+
 
 
 let HistoryComponent = class HistoryComponent {
-    constructor() { }
+    constructor(userHistory, userService, changeDetection) {
+        this.userHistory = userHistory;
+        this.userService = userService;
+        this.changeDetection = changeDetection;
+        this.loadedUser = {};
+        this.loadedHistory = [];
+    }
     ngOnInit() {
+        this.userService.userSubscribe().subscribe(res => {
+            this.loadedUser = res;
+        });
+        this.userHistory.subscribeUserHistory().subscribe(res => {
+            this.loadedHistory = res;
+            console.log("varSubscribe;", this.loadedHistory);
+            this.changeDetection.detectChanges();
+        });
+        this.userHistory.getUserHistory(this.loadedUser.username).subscribe(res => {
+            this.loadedHistory = res;
+            console.log("getfunction;", this.loadedHistory);
+            this.changeDetection.detectChanges();
+        });
     }
 };
+HistoryComponent.ctorParameters = () => [
+    { type: _services_user_history_service__WEBPACK_IMPORTED_MODULE_2__["UserHistoryService"] },
+    { type: _services_user_service__WEBPACK_IMPORTED_MODULE_3__["UserService"] },
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] }
+];
 HistoryComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-history',
@@ -1261,18 +1312,25 @@ let ResolverService = class ResolverService {
             this.user = res;
             if (Object.values(this.user).length !== 0) {
                 this.CRService.verifyToken(this.user).subscribe(obj => {
-                    console.log("resolver", obj);
-                    if (obj["valid"] === false) {
+                    console.log('resolver', obj);
+                    if (obj['valid'] === false) {
                         this.zone.run(() => {
-                            this.router.navigate(["/login"]);
+                            this.router.navigate(['/login']);
+                            let newUser = {};
+                            this.userService.setUser(newUser);
                         });
+                    }
+                    else {
+                        this.userService.userSubscribe().next(this.user);
                     }
                 });
                 return this.user;
             }
             else {
                 this.zone.run(() => {
-                    this.router.navigate(["/login"]);
+                    this.router.navigate(['/login']);
+                    const newUser = {};
+                    this.userService.setUser(newUser);
                 });
                 return false;
             }
@@ -1286,8 +1344,83 @@ ResolverService.ctorParameters = () => [
     { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["NgZone"] }
 ];
 ResolverService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: "root" })
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' })
 ], ResolverService);
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/user-history.service.ts":
+/*!**************************************************!*\
+  !*** ./src/app/services/user-history.service.ts ***!
+  \**************************************************/
+/*! exports provided: UserHistoryService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UserHistoryService", function() { return UserHistoryService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
+
+
+
+/// <reference path="node_modules\@types\chrome\index.d.ts"/>
+const CHROME = chrome;
+let UserHistoryService = class UserHistoryService {
+    constructor() {
+        this.userHistory = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]([]);
+    }
+    setUserHistory(newUserHistory, user) {
+        const obj = {};
+        let tempUserHistory = [];
+        this.getUserHistory(user).subscribe((res) => {
+            if (res.length === 0) {
+                tempUserHistory.push(newUserHistory);
+                this.userHistory.next(tempUserHistory);
+                obj[user] = tempUserHistory;
+                CHROME.storage.local.set(obj, function () { });
+            }
+            else if (res.length === 10) {
+                tempUserHistory = res;
+                tempUserHistory.shift();
+                tempUserHistory.push(newUserHistory);
+                obj[user] = tempUserHistory;
+                this.userHistory.next(tempUserHistory);
+                CHROME.storage.local.set(obj, function () { });
+            }
+            else {
+                tempUserHistory = res;
+                tempUserHistory.push(newUserHistory);
+                obj[user] = tempUserHistory;
+                this.userHistory.next(tempUserHistory);
+                CHROME.storage.local.set(obj, function () { });
+            }
+        });
+    }
+    getUserHistory(user) {
+        return new rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"](observe => {
+            CHROME.storage.local.get(user, function (result) {
+                let botHistory = [];
+                console.log('get userHistory:', result);
+                if (result[user]) {
+                    botHistory = result[user];
+                    console.log(botHistory);
+                }
+                observe.next(botHistory);
+                // observe.complete();
+            });
+        });
+    }
+    subscribeUserHistory() {
+        return this.userHistory;
+    }
+};
+UserHistoryService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+], UserHistoryService);
 
 
 
@@ -1313,20 +1446,23 @@ __webpack_require__.r(__webpack_exports__);
 const CHROME = chrome;
 let UserService = class UserService {
     constructor() {
-        this.user = {};
+        this.user = new rxjs__WEBPACK_IMPORTED_MODULE_2__["BehaviorSubject"]({});
     }
     setUser(newUser) {
-        var obj = {};
-        obj["user"] = newUser;
+        let obj = {};
+        obj['user'] = newUser;
         CHROME.storage.local.set(obj, function () { });
-        this.user = newUser;
+        this.user.next(newUser);
+    }
+    userSubscribe() {
+        return this.user;
     }
     getUser() {
         return new rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"](observe => {
-            CHROME.storage.local.get(["user"], function (result) {
-                console.log("get user:", result);
+            CHROME.storage.local.get(['user'], function (result) {
+                console.log('get user:', result);
                 if (result.user) {
-                    this.user = result["user"];
+                    this.user = result['user'];
                 }
                 observe.next(this.user);
                 observe.complete();

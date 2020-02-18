@@ -40,13 +40,7 @@ getPrevRoute() {
       }
   });
 }
-
-  getRoute() {
-   return this.route;
-  }
-
   getRouteForbutton() {
-    console.log(this.route);
     return this.route.firstChild.routeConfig.path;
   }
 

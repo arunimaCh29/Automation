@@ -18,6 +18,7 @@ import { UserService } from './services/user.service';
 import { ResolverService } from './services/resolver.service';
 import { HistoryComponent } from './history/history.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserHistoryService } from './services/user-history.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { LogoutComponent } from './logout/logout.component';
     LoadersService,
     ControlRoomService,
     UserService,
-    ResolverService
+    ResolverService,
+    UserHistoryService
 
   ],
   bootstrap: [AppComponent]

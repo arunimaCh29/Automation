@@ -1,11 +1,11 @@
-import { Injectable, NgZone } from "@angular/core";
-import { Router, Resolve, ActivatedRouteSnapshot } from "@angular/router";
-import { User } from "../models/User";
-import { UserService } from "./user.service";
-import { ControlRoomService } from "./control-room.service";
-import { Observable } from "rxjs";
+import { Injectable, NgZone } from '@angular/core';
+import { Router, Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { User } from '../models/User';
+import { UserService } from './user.service';
+import { ControlRoomService } from './control-room.service';
+import { Observable } from 'rxjs';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class ResolverService implements Resolve<User> {
   user = {} as User;
 
@@ -21,17 +21,23 @@ export class ResolverService implements Resolve<User> {
       this.user = res;
       if (Object.values(this.user).length !== 0) {
         this.CRService.verifyToken(this.user).subscribe(obj => {
-          console.log("resolver", obj);
-          if (obj["valid"] === false) {
+          console.log('resolver', obj);
+          if (obj['valid'] === false) {
             this.zone.run(() => {
-              this.router.navigate(["/login"]);
+              this.router.navigate(['/login']);
+              let newUser = {} as User;
+              this.userService.setUser(newUser);
             });
+          } else {
+            this.userService.userSubscribe().next(this.user);
           }
         });
         return this.user;
       } else {
         this.zone.run(() => {
-          this.router.navigate(["/login"]);
+          this.router.navigate(['/login']);
+          const newUser = {} as User;
+          this.userService.setUser(newUser);
         });
         return false;
       }

@@ -5,18 +5,20 @@ import {
   SimpleChanges,
   OnChanges,
   SimpleChange
-} from "@angular/core";
-import { BotConfiguration } from "../models/botConfiguration";
-import { Field } from "../models/field";
-import { ControlRoomService } from "../services/control-room.service";
-import { User } from "../models/User";
-import { UserService } from "../services/user.service";
-import { Observable, timer } from "rxjs";
+} from '@angular/core';
+import { BotConfiguration } from '../models/botConfiguration';
+import { Field } from '../models/field';
+import { ControlRoomService } from '../services/control-room.service';
+import { User } from '../models/User';
+import { UserService } from '../services/user.service';
+import { Observable, timer } from 'rxjs';
+import { UserHistoryService } from '../services/user-history.service';
+import { BotRunHistory } from '../models/botRunHistory';
 
 @Component({
-  selector: "app-bot-details",
-  templateUrl: "./bot-details.component.html",
-  styleUrls: ["./bot-details.component.css"]
+  selector: 'app-bot-details',
+  templateUrl: './bot-details.component.html',
+  styleUrls: ['./bot-details.component.css']
 })
 export class BotDetailsComponent implements OnInit, OnChanges {
   @Input()
@@ -31,7 +33,8 @@ export class BotDetailsComponent implements OnInit, OnChanges {
   runnerId;
   constructor(
     private controlRService: ControlRoomService,
-    private userService: UserService
+    private userService: UserService,
+    private userHistory: UserHistoryService
   ) {}
 
   ngOnInit() {
@@ -72,8 +75,8 @@ export class BotDetailsComponent implements OnInit, OnChanges {
     // tslint:disable-next-line: forin
     for (const i in this.fields) {
       if (
-        this.fields[i].variableType === "string" ||
-        this.fields[i].variableType === "number"
+        this.fields[i].variableType === 'string' ||
+        this.fields[i].variableType === 'number'
       ) {
         const insideValue: { [k: string]: any } = {};
         insideValue[this.fields[i].variableType] = this.fields[i].value;
@@ -81,7 +84,7 @@ export class BotDetailsComponent implements OnInit, OnChanges {
         botVariables[this.fields[i].variable] = insideValue;
       }
     }
-    botVariables["vBotTaskerUser"] = {
+    botVariables['vBotTaskerUser'] = {
       list: [
         this.user.email,
         this.user.firstName,
@@ -113,8 +116,13 @@ export class BotDetailsComponent implements OnInit, OnChanges {
               this.setTime();
               this.error = true;
               this.deploymsg =
-                "File does not exist Or Permission denied to the file";
-                return;
+                'File does not exist Or Permission denied to the file';
+              let botRunHistory = {} as BotRunHistory;
+              botRunHistory.botName = this.Bot.name;
+              botRunHistory.date = (new Date()).toDateString();
+              botRunHistory.status ='Failure';
+              this.userHistory.setUserHistory(botRunHistory, this.user.username);
+              return;
             }
 
             this.controlRService
@@ -128,20 +136,35 @@ export class BotDetailsComponent implements OnInit, OnChanges {
               .subscribe(
                 res => {
                   this.setTime();
-                  this.deploymsg = "Bot Successfully deployed";
+                  this.deploymsg = 'Bot Successfully deployed';
                   this.error = false;
+                  const botRunHistory = {} as BotRunHistory;
+                  botRunHistory.botName = this.Bot.name;
+                  botRunHistory.date = (new Date()).toDateString();
+                  botRunHistory.status ='success';
+                  this.userHistory.setUserHistory(botRunHistory, this.user.username);
                 },
                 err => {
                   this.setTime();
-                  this.deploymsg = "Bot deployment Unsuccesful";
+                  this.deploymsg = 'Bot deployment Unsuccesful';
                   this.error = true;
+                  const botRunHistory = {} as BotRunHistory;
+                  botRunHistory.botName = this.Bot.name;
+                  botRunHistory.date = (new Date()).toDateString();
+                  botRunHistory.status ='Failure';
+                  this.userHistory.setUserHistory(botRunHistory, this.user.username);
                 }
               );
           });
       },
       err => {
         this.setTime();
-        this.deploymsg = "File does not exist Or Permission denied to the file";
+        this.deploymsg = 'File does not exist Or Permission denied to the file';
+        const botRunHistory = {} as BotRunHistory;
+        botRunHistory.botName = this.Bot.name;
+        botRunHistory.date = (new Date()).toDateString();
+        botRunHistory.status ='Failure';
+        this.userHistory.setUserHistory(botRunHistory, this.user.username);
       }
     );
   }
